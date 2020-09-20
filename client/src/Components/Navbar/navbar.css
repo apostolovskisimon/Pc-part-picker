@@ -1,0 +1,45 @@
+.navbar {
+  width: 100%;
+  height: 80px;
+  background-color: #f8f9fa;
+  color: #18154c;
+  border-bottom: 2px solid #18154c;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.logo {
+  margin-left: 5em;
+}
+
+.links {
+  width: 30em;
+  text-align: center;
+}
+
+.anchor {
+  margin-right: 5em;
+  text-decoration: none;
+}
+
+.nav-form {
+  width: 10em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 100%;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+/*# sourceMappingURL=navbar.css.map */

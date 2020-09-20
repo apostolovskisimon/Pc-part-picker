@@ -1,0 +1,15 @@
+.form-box {
+  width: 25em;
+  height: 25em;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+}
+
+.form-box input {
+  width: 90%;
+  height: 3em;
+  margin-bottom: 1em;
+}

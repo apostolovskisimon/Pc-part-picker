@@ -1,0 +1,35 @@
+$primary-color: rgb(24, 21, 76);
+$secondary-color: rgb(248, 249, 250);
+
+.navbar {
+  width: 100%;
+  height: 80px;
+  background-color: $secondary-color;
+  color: $primary-color;
+  border-bottom: 2px solid $primary-color;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  margin-left: 5em;
+}
+
+.links {
+  width: 30em;
+  text-align: center;
+}
+
+.anchor {
+  margin-right: 5em;
+  text-decoration: none;
+}
+
+.nav-form {
+  width: 10em;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-around;
+}
