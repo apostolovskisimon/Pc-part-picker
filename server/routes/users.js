@@ -1,5 +1,5 @@
 const router = require("express").Router();
-
+const bcrypt = require("bcrypt");
 const User = require("../models/users.model");
 
 router.route("/").get((req, res) => {
@@ -8,18 +8,49 @@ router.route("/").get((req, res) => {
     .catch((err) => res.status(400).json("Error" + err));
 });
 
-router.route("/add").post((req, res) => {
-  const name = req.body.name;
-  const email = req.body.email;
+router.route("/add").post(async (req, res) => {
+  try {
+    const hashPassword = await bcrypt.hash(req.body.password, 10);
+    // const hashEmail = await bcrypt.hash(req.body.email, 10);
 
-  const NewUser = new User({
-    name,
-    email,
-  });
+    // const email = hashEmail;
+    const email = req.body.email;
 
-  NewUser.save()
-    .then(() => res.json("Added a user"))
-    .catch((err) => res.status(400).json("Error" + err));
+    const password = hashPassword;
+    const displayName = req.body.displayName;
+    const NewUser = new User({
+      displayName,
+      email,
+      password,
+    });
+
+    console.log(NewUser);
+
+    NewUser.save()
+      .then(() => res.json("Added a user"))
+      .catch((err) => res.status(400).json("Error" + err));
+  } catch {
+    res.status(500).send();
+  }
+});
+
+router.route("/login").post(async (req, res) => {
+  const userToFind = await User.findOne({ email: req.body.email });
+  console.log(userToFind.password);
+  if (userToFind === null) {
+    return res.status(400).send("Cant find user");
+  }
+  try {
+    if (await bcrypt.compare(req.body.password, userToFind.password)) {
+      res.send("YAY UR IN");
+      console.log("login");
+    } else {
+      res.send("No GO");
+      console.log("fail");
+    }
+  } catch {
+    res.status(500).send();
+  }
 });
 
 router.route("/:id").get((req, res) => {
@@ -37,9 +68,9 @@ router.route("/:id").delete((req, res) => {
 router.route("/update/:id").post((req, res) => {
   User.findById(req.params.id)
     .then((user) => {
-      user.name = req.body.name;
+      user.displayName = req.body.displayName;
       user.email = req.body.email;
-
+      user.password = req.body.password;
       user
         .save()
         .then(() => res.json("USer updated"))
