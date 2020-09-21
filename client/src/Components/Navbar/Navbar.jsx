@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { PeriodicContext } from "../../Context/MainContext";
 import "./navbar.css";
 
 const Navbar = () => {
+  let history = useHistory();
   const {
     showLoginForm,
     setShowLoginForm,
@@ -36,19 +37,22 @@ const Navbar = () => {
       <div className="nav-form">
         {!loggedIn ? (
           <React.Fragment>
-            <Link to="login" onClick={() => setShowSignupForm(!showSignupForm)}>
-              Log In
-            </Link>
+            <Link to="login">Log In</Link>
             <Link to="signup">Sign Up</Link>
           </React.Fragment>
         ) : (
           <React.Fragment>
-            <p>Hello, {user}</p>
+            <p>Hello, {user.displayName}</p>
+            <Link to="/dashboard">see dashboard</Link>
             <button
               onClick={() => {
-                localStorage.removeItem("userLoggedIn");
-                setUser("");
+                localStorage.removeItem("USER");
+                setUser({
+                  displayName: "",
+                  email: "",
+                });
                 setLoggedIn(false);
+                history.push("/");
               }}
             >
               Log Out

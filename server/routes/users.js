@@ -36,12 +36,12 @@ router.route("/add").post(async (req, res) => {
 
 router.route("/login").post(async (req, res) => {
   const userToFind = await User.findOne({ email: req.body.email });
-  if (userToFind.password === null) {
+  if (userToFind === null) {
     return res.status(400).send("Cant find user");
   }
   try {
     if (await bcrypt.compare(req.body.password, userToFind.password)) {
-      res.send(userToFind.displayName);
+      res.send(userToFind);
       console.log("login");
     } else {
       res.send("No GO");
