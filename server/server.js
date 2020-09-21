@@ -25,9 +25,12 @@ connection.once("open", () => {
 
 const cpusRouter = require("./routes/cpus");
 const userRouter = require("./routes/users");
+const itemsRouter = require("./routes/items");
 
 app.use("/cpus", cpusRouter);
 app.use("/users", userRouter);
+app.use("/items", itemsRouter);
+
 app.listen(port, () => {
   console.log(`Server running on ${port}`);
 });

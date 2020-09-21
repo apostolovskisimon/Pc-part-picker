@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { PeriodicContext } from "../../Context/MainContext";
 import { useHistory } from "react-router-dom";
+import "./Dashboard.css";
 const Dashboard = () => {
   let history = useHistory();
   const { user, loggedIn } = useContext(PeriodicContext);

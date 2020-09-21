@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { PeriodicContext } from "../../Context/MainContext";
-import "./shop.css";
+import "./Shop.css";
 
 const Shop = () => {
   const { loggedIn, setLoggedIn } = useContext(PeriodicContext);

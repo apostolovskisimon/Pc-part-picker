@@ -6,11 +6,11 @@ export const PeriodicContext = createContext();
 export const PeriodicProvider = (props) => {
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showSignupForm, setShowSignupForm] = useState(false);
-
   const [loggedIn, setLoggedIn] = useState(false);
   const [user, setUser] = useState({
     displayName: "",
     email: "",
+    id: "",
   });
 
   const loginUser = async () => {
@@ -25,6 +25,7 @@ export const PeriodicProvider = (props) => {
         setUser({
           displayName: loggedINUSER.displayName,
           email: loggedINUSER.email,
+          id: loggedINUSER._id,
         });
       })
       .catch((err) => {
@@ -33,22 +34,42 @@ export const PeriodicProvider = (props) => {
       });
   };
 
+  const [itemList, setItemList] = useState([]);
+
+  const handleAddToCart = async (id) => {
+    const itemToAdd = itemList.filter((el) => el.id === id);
+    console.log(itemToAdd);
+    await Axios.post(
+      `http://localhost:5000/users/addToCart/${user.email}`,
+      itemToAdd
+    )
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  };
+
+  // TO DO
+  // FINISH UP CART
+  // SEE WHY IT ISNT PUSHING CORRECTLY
+
   useEffect(() => {
     if (localStorage.getItem("USER")) {
       loginUser();
     }
+
+    Axios.get("http://localhost:5000/items/")
+      .then((res) => setItemList(res.data))
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   // useEffect(() => {
-  //   if (user.length > 3) {
-  //     localStorage.setItem("userLoggedIn", user);
-  //   }
-  // }, [user]);
+  // }, [itemList])
 
   useEffect(() => {
     console.log(user);
   }, [user]);
-
+  console.log("itemlist e:", itemList);
   const sharedValue = {
     showLoginForm,
     setShowLoginForm,
@@ -58,6 +79,10 @@ export const PeriodicProvider = (props) => {
     setLoggedIn,
     user,
     setUser,
+
+    handleAddToCart,
+    itemList,
+    setItemList,
   };
   return (
     <PeriodicContext.Provider value={sharedValue}>

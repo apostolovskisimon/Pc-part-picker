@@ -19,4 +19,9 @@
   height: 3em;
   margin-bottom: 1em;
 }
+
+.loginbox form,
+.signupform {
+  padding-top: 10vh;
+}
 /*# sourceMappingURL=LoginOrSignup.css.map */

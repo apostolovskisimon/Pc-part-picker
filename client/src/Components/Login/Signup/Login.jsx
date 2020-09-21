@@ -18,7 +18,7 @@ const LoginOrSignup = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const [id, setId] = useState("");
   const LogIn = async (e) => {
     e.preventDefault();
     const abortController = new AbortController();
@@ -26,6 +26,7 @@ const LoginOrSignup = () => {
     const userLoggingIn = {
       email,
       password,
+      id,
     };
     await axios
       .post("http://localhost:5000/users/login", userLoggingIn, {
@@ -36,11 +37,13 @@ const LoginOrSignup = () => {
         setUser({
           displayName: res.data.displayName,
           email: res.data.email,
+          id: res.data._id,
         });
         const saveUser = {
           displayName: res.data.displayName,
           email: res.data.email,
           password: res.data.password,
+          id: res.data._id,
         };
         localStorage.setItem("USER", JSON.stringify(saveUser));
         setLoggedIn(true);
@@ -60,7 +63,7 @@ const LoginOrSignup = () => {
 
   return (
     <React.Fragment>
-      <div className="anim">
+      <div className="loginbox">
         <form onSubmit={(e) => LogIn(e)}>
           <p>LOG IN FORM</p>
           <input

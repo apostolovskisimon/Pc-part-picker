@@ -2,7 +2,8 @@ import React, { useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { PeriodicContext } from "../../Context/MainContext";
 import "./navbar.css";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
 const Navbar = () => {
   let history = useHistory();
   const {
@@ -41,9 +42,13 @@ const Navbar = () => {
             <Link to="signup">Sign Up</Link>
           </React.Fragment>
         ) : (
-          <React.Fragment>
+          <div className="user-control">
             <p>Hello, {user.displayName}</p>
             <Link to="/dashboard">see dashboard</Link>
+            <div className="cart-icon">
+              <p>cart lenght</p>
+              <FontAwesomeIcon icon={faCartPlus} />
+            </div>
             <button
               onClick={() => {
                 localStorage.removeItem("USER");
@@ -57,7 +62,7 @@ const Navbar = () => {
             >
               Log Out
             </button>
-          </React.Fragment>
+          </div>
         )}
       </div>
     </nav>

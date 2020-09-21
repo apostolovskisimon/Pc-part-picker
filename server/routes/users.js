@@ -15,7 +15,6 @@ router.route("/add").post(async (req, res) => {
 
     // const email = hashEmail;
     const email = req.body.email;
-
     const password = hashPassword;
     const displayName = req.body.displayName;
     const NewUser = new User({
@@ -52,30 +51,27 @@ router.route("/login").post(async (req, res) => {
   }
 });
 
-router.route("/:id").get((req, res) => {
-  User.findById(req.params.id)
-    .then((user) => res.json(user))
-    .catch((err) => res.status(400).json("Error" + err));
-});
+// router.route("/:id").get((req, res) => {
+//   User.findById(req.params.id)
+//     .then((user) => res.json(user))
+//     .catch((err) => res.status(400).json("Error" + err));
+// });
 
-router.route("/:id").delete((req, res) => {
-  User.findByIdAndDelete(req.params.id)
-    .then(() => res.json("User deleted"))
-    .catch((err) => res.status(400).json("Error" + err));
-});
+// router.route("/:id").delete((req, res) => {
+//   User.findByIdAndDelete(req.params.id)
+//     .then(() => res.json("User deleted"))
+//     .catch((err) => res.status(400).json("Error" + err));
+// });
 
-router.route("/update/:id").post((req, res) => {
-  User.findById(req.params.id)
-    .then((user) => {
-      user.displayName = req.body.displayName;
-      user.email = req.body.email;
-      user.password = req.body.password;
-      user
-        .save()
-        .then(() => res.json("USer updated"))
-        .catch((err) => res.status(400).json("Error" + err));
-    })
-    .catch((err) => res.status(400).json("Error" + err));
+router.route("/addToCart/:email").post(async (req, res) => {
+  await User.findOne({ email: req.params.email }).then((user) => {
+    console.log(req.body.cart);
+    // user.cart = req.body.cart;
+    user
+      .save()
+      .then(() => res.json("added to cart!"))
+      .catch((err) => res.status(400).json("Error" + err));
+  });
 });
 
 module.exports = router;
