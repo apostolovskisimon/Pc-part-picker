@@ -71,6 +71,19 @@ export const PeriodicProvider = (props) => {
       });
   }, []);
 
+  const [activeCategory, setActiveCategory] = useState("All");
+  const [categorizedItems, setCategorizedItems] = useState([]);
+  const handleActiveCateogry = (id) => {
+    if (id === "All") {
+      setCategorizedItems(itemList);
+    } else {
+      const filteredItems = itemList.filter((el) => el.category === id);
+      setActiveCategory(filteredItems[0].category);
+      setCategorizedItems(filteredItems);
+    }
+  };
+
+  console.log(activeCategory);
   useEffect(() => {}, [user]);
   const sharedValue = {
     showLoginForm,
@@ -85,6 +98,10 @@ export const PeriodicProvider = (props) => {
     handleAddToCart,
     itemList,
     setItemList,
+    handleActiveCateogry,
+    categorizedItems,
+    setCategorizedItems,
+    activeCategory,
   };
   return (
     <PeriodicContext.Provider value={sharedValue}>

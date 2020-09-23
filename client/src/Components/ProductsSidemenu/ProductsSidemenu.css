@@ -7,4 +7,14 @@
   height: 300px;
   color: white;
 }
+
+.activeCat {
+  background-color: white;
+  color: black;
+}
+
+.notActive {
+  background-color: black;
+  color: white;
+}
 /*# sourceMappingURL=ProductsSidemenu.css.map */

@@ -1,18 +1,33 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./ProductsSidemenu.css";
-const ProductsSidemenu = () => {
+import Categories from "../../Assets/JS/Categories";
+import { PeriodicContext } from "../../Context/MainContext";
+const ProductsSidemenu = ({ cat }) => {
+  const { handleActiveCateogry, activeCategory, categorizedItems } = useContext(
+    PeriodicContext
+  );
+  const [handleActive, setHandleActive] = useState("All");
+
+  useEffect(() => {
+    console.log(handleActive);
+  }, [handleActive]);
   return (
-    <div className="categories">
-      <ul>
-        <li>Motherboard</li>
-        <li>CPU</li>
-        <li>RAM</li>
-        <li>GPU</li>
-        <li>Power Supply</li>
-        <li>Case</li>
-        <li>Monitor</li>
-      </ul>
-    </div>
+    <React.Fragment>
+      <li
+        className={
+          activeCategory.toString() == handleActive.toString()
+            ? "activeCat"
+            : "notActive"
+        }
+        id={cat}
+        onClick={(e) => {
+          handleActiveCateogry(e.currentTarget.id);
+          setHandleActive(cat);
+        }}
+      >
+        {cat}
+      </li>
+    </React.Fragment>
   );
 };
 
