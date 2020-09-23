@@ -11,65 +11,67 @@ export const PeriodicProvider = (props) => {
     displayName: "",
     email: "",
     id: "",
+    cart: [],
   });
 
-  const loginUser = async () => {
-    await Axios.post(
-      "http://localhost:5000/users/login",
-      JSON.parse(localStorage.getItem("USER"))
+  const loginOnServer = async () => {
+    await Axios.get(
+      `http://localhost:5000/users/${
+        JSON.parse(localStorage.getItem("USER")).email
+      }`
     )
       .then((res) => {
-        console.log(res.data);
-        setLoggedIn(true);
-        const loggedINUSER = JSON.parse(localStorage.getItem("USER"));
         setUser({
-          displayName: loggedINUSER.displayName,
-          email: loggedINUSER.email,
-          id: loggedINUSER._id,
+          displayName: res.data.displayName,
+          email: res.data.email,
+          id: res.data._id,
+          cart: res.data.cart,
         });
+        setLoggedIn(true);
       })
-      .catch((err) => {
-        console.log(err);
-        setLoggedIn(false);
-      });
+      .catch((err) => console.log(err));
   };
 
   const [itemList, setItemList] = useState([]);
 
   const handleAddToCart = async (id) => {
     const itemToAdd = itemList.filter((el) => el.id === id);
-    console.log(itemToAdd);
     await Axios.post(
       `http://localhost:5000/users/addToCart/${user.email}`,
       itemToAdd
     )
-      .then((res) => console.log(res))
+      .then((res) => {
+        console.log(res.data);
+        if (typeof res.data == "string") {
+          return;
+        } else {
+          setUser({ ...user, cart: res.data });
+        }
+      })
       .catch((err) => console.log(err));
   };
-
-  // TO DO
-  // FINISH UP CART
-  // SEE WHY IT ISNT PUSHING CORRECTLY
+  const [popularItems, setPopularItems] = useState([]);
 
   useEffect(() => {
     if (localStorage.getItem("USER")) {
-      loginUser();
+      loginOnServer();
+    } else {
+      setLoggedIn(false);
     }
 
     Axios.get("http://localhost:5000/items/")
-      .then((res) => setItemList(res.data))
+      .then((res) => {
+        setItemList(res.data);
+        setPopularItems(
+          res.data.sort(() => Math.random() - Math.random()).slice(0, 3)
+        );
+      })
       .catch((err) => {
         console.log(err);
       });
   }, []);
 
-  // useEffect(() => {
-  // }, [itemList])
-
-  useEffect(() => {
-    console.log(user);
-  }, [user]);
-  console.log("itemlist e:", itemList);
+  useEffect(() => {}, [user]);
   const sharedValue = {
     showLoginForm,
     setShowLoginForm,
@@ -79,7 +81,7 @@ export const PeriodicProvider = (props) => {
     setLoggedIn,
     user,
     setUser,
-
+    popularItems,
     handleAddToCart,
     itemList,
     setItemList,

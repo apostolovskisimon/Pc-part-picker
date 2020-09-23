@@ -18,6 +18,8 @@ const LandingPage = () => {
         </p>
         <Link to="/shop">Check out our shop!</Link>
       </div>
+      <h2>These are some of the most popular items we offer</h2>
+
       <ItemsList />
     </React.Fragment>
   );

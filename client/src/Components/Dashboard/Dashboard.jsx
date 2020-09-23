@@ -6,17 +6,19 @@ const Dashboard = () => {
   let history = useHistory();
   const { user, loggedIn } = useContext(PeriodicContext);
 
-  // useEffect(() => {
-  //   if (!loggedIn) {
-  //     history.push("/");
-  //   }
-  // }, []);
-
   return (
     <React.Fragment>
       <div className="dashboard">
         <h1>HELLO!</h1>
         <h2>{user.displayName}</h2>
+        <p>Items in cart: {user.cart.length}</p>
+        {user.cart.map((el, i) => {
+          return (
+            <p key={i}>
+              {el.title}, a {el.description}.
+            </p>
+          );
+        })}
       </div>
     </React.Fragment>
   );

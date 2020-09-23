@@ -11,9 +11,7 @@ router.route("/").get((req, res) => {
 router.route("/add").post(async (req, res) => {
   try {
     const hashPassword = await bcrypt.hash(req.body.password, 10);
-    // const hashEmail = await bcrypt.hash(req.body.email, 10);
 
-    // const email = hashEmail;
     const email = req.body.email;
     const password = hashPassword;
     const displayName = req.body.displayName;
@@ -51,11 +49,11 @@ router.route("/login").post(async (req, res) => {
   }
 });
 
-// router.route("/:id").get((req, res) => {
-//   User.findById(req.params.id)
-//     .then((user) => res.json(user))
-//     .catch((err) => res.status(400).json("Error" + err));
-// });
+router.route("/:email").get((req, res) => {
+  User.findOne({ email: req.params.email })
+    .then((user) => res.json(user))
+    .catch((err) => res.status(400).json("Error" + err));
+});
 
 // router.route("/:id").delete((req, res) => {
 //   User.findByIdAndDelete(req.params.id)
@@ -63,14 +61,22 @@ router.route("/login").post(async (req, res) => {
 //     .catch((err) => res.status(400).json("Error" + err));
 // });
 
+// da se zacuva vo contextot
 router.route("/addToCart/:email").post(async (req, res) => {
   await User.findOne({ email: req.params.email }).then((user) => {
-    console.log(req.body.cart);
-    // user.cart = req.body.cart;
-    user
-      .save()
-      .then(() => res.json("added to cart!"))
-      .catch((err) => res.status(400).json("Error" + err));
+    const item = user.cart.find((el) => el.id === req.body[0].id);
+    if (item) {
+      res.send("That item is already in your cart!");
+      return;
+    } else {
+      user.cart.push(req.body[0]);
+      user
+        .save()
+        .then(() => {
+          res.json(user.cart);
+        })
+        .catch((err) => res.status(400).json("Error" + err));
+    }
   });
 });
 

@@ -25,7 +25,7 @@ const Navbar = () => {
         <Link to="/" className="anchor">
           Home
         </Link>
-        <Link to="" className="anchor">
+        <Link to="/products" className="anchor">
           Products
         </Link>
         <Link to="" className="anchor">
@@ -46,7 +46,7 @@ const Navbar = () => {
             <p>Hello, {user.displayName}</p>
             <Link to="/dashboard">see dashboard</Link>
             <div className="cart-icon">
-              <p>cart lenght</p>
+              {user.cart && <p>{user.cart.length}</p>}
               <FontAwesomeIcon icon={faCartPlus} />
             </div>
             <button

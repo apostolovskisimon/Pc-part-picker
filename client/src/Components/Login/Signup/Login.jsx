@@ -19,6 +19,7 @@ const LoginOrSignup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [id, setId] = useState("");
+
   const LogIn = async (e) => {
     e.preventDefault();
     const abortController = new AbortController();
@@ -33,23 +34,25 @@ const LoginOrSignup = () => {
         signal: signal,
       })
       .then((res) => {
-        console.log(res.data);
-        setUser({
-          displayName: res.data.displayName,
-          email: res.data.email,
-          id: res.data._id,
-        });
         const saveUser = {
           displayName: res.data.displayName,
           email: res.data.email,
           password: res.data.password,
           id: res.data._id,
+          cart: res.data.cart,
         };
+        setUser({
+          displayName: saveUser.displayName,
+          email: saveUser.email,
+          id: saveUser._id,
+          cart: saveUser.cart,
+        });
+
         localStorage.setItem("USER", JSON.stringify(saveUser));
         setLoggedIn(true);
         setEmail("");
         setPassword("");
-        history.push("/dashboard");
+        history.push("/");
       })
       .catch((err) => {
         console.log(err);

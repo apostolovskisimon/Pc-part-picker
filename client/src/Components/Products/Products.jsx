@@ -1,13 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import { PeriodicContext } from "../../Context/MainContext";
 import Item from "../Item/Item";
-import "./ItemList.css";
-const ItemsList = () => {
-  const { popularItems } = useContext(PeriodicContext);
+import ProductsSidemenu from "../ProductsSidemenu/ProductsSidemenu";
+const Products = () => {
+  const { itemList } = useContext(PeriodicContext);
 
   return (
     <div className="item-content">
-      {popularItems.map((el, i) => {
+      <ProductsSidemenu />
+      {itemList.map((el, i) => {
         return (
           <Item
             key={i}
@@ -23,4 +24,4 @@ const ItemsList = () => {
   );
 };
 
-export default ItemsList;
+export default Products;

@@ -12,6 +12,7 @@ import {
 } from "./Context/MainContext";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import Shop from "./Components/Shop/Shop";
+import Products from "./Components/Products/Products";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="/signup" exact component={Signup} />
             <Route path="/dashboard" exact component={Dashboard} />
             <Route path="/shop" exact component={Shop} />
+            <Route path="/products" exact component={Products} />
           </Switch>
         </Router>
       </PeriodicProvider>
