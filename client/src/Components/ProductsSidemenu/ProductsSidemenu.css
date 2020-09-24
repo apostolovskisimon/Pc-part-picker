@@ -1,13 +1,3 @@
-.categories {
-  position: fixed;
-  width: 15%;
-  background-color: black;
-  position: absolute;
-  left: 0;
-  height: 300px;
-  color: white;
-}
-
 .activeCat {
   background-color: white;
   color: black;

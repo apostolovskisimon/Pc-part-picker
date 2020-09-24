@@ -3,6 +3,7 @@ import Categories from "../../Assets/JS/Categories";
 import { PeriodicContext } from "../../Context/MainContext";
 import Item from "../Item/Item";
 import ProductsSidemenu from "../ProductsSidemenu/ProductsSidemenu";
+import "./Products.css";
 const Products = () => {
   const { itemList, activeCategory, categorizedItems } = useContext(
     PeriodicContext
@@ -10,10 +11,11 @@ const Products = () => {
 
   return (
     <div className="item-content">
-      {Categories.map((el, i) => {
-        return <ProductsSidemenu cat={el.category} key={i} />;
-      })}
-
+      <div className="categories">
+        {Categories.map((el, i) => {
+          return <ProductsSidemenu cat={el.category} key={i} />;
+        })}
+      </div>
       {activeCategory !== "All"
         ? categorizedItems.map((el, i) => {
             return (

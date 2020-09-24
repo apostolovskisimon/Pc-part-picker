@@ -30,6 +30,10 @@ const ItemSchema = new Schema({
     type: Number,
     required: true,
   },
+  price: {
+    type: Number,
+    required: true,
+  },
 });
 
 const Items = mongoose.model("items", ItemSchema);

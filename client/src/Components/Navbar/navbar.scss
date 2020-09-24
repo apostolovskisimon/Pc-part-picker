@@ -10,21 +10,36 @@ $secondary-color: rgb(248, 249, 250);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: fixed;
+  padding: 0 5em 0 5em;
 }
-
+.navbar a {
+  text-decoration: none;
+}
 .logo {
-  margin-left: 5em;
+  height: 100px;
+  width: 100px;
 }
 
+.logo img {
+  height: 95%;
+  width: 95%;
+}
 .links {
-  width: 30em;
+  width: 50%;
   text-align: center;
 }
 
+.anchor input {
+  margin-left: 1em;
+  border-radius: 10px;
+  border: 1px solid $primary-color;
+  padding: 0.8em;
+}
+
 .anchor {
-  margin-right: 5em;
+  margin-left: 4em;
   text-decoration: none;
+  font-size: 1.4em;
 }
 
 .nav-form {
@@ -37,5 +52,73 @@ $secondary-color: rgb(248, 249, 250);
 
 .user-control {
   display: flex;
-  flex-direction: column;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  width: 8em;
+  height: 80%;
+}
+
+.user-control a {
+}
+
+.shopcart {
+}
+
+.shopIcon {
+  font-size: 1.8em;
+}
+
+.user-control button {
+  background-color: $primary-color;
+  color: $secondary-color;
+  border: none;
+  border-radius: 10px;
+  padding: 4px 15px;
+  transition: 0.3s ease-in-out;
+}
+
+.user-control button:hover {
+  padding: 4px 25px;
+  cursor: pointer;
+}
+
+.search {
+  position: absolute;
+  top: 10vh;
+  transform: translate(-50%);
+  background-color: black;
+  width: 40%;
+  left: 50%;
+  color: white;
+}
+
+.search li {
+  color: white;
+}
+
+.on {
+  height: 25vh;
+  animation: ON 0.5s ease-in-out;
+}
+
+@keyframes ON {
+  from {
+    height: 0;
+  }
+  to {
+    height: 25vh;
+  }
+}
+
+.off {
+  height: 0;
+  animation: OFF 0.5s ease-in-out;
+}
+@keyframes OFF {
+  from {
+    height: 25vh;
+  }
+  to {
+    height: 0;
+  }
 }

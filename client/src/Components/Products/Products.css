@@ -1,0 +1,13 @@
+.categories {
+  position: absolute;
+  width: 15%;
+  background-color: black;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+  height: 300px;
+  color: white;
+}
+/*# sourceMappingURL=Products.css.map */

@@ -16,7 +16,7 @@ router.route("/add").post(async (req, res) => {
     const description = req.body.description;
     const quantity = Number(req.body.quantity);
     const rating = Number(req.body.rating);
-
+    const price = Number(req.body.price);
     const NewItem = new Items({
       id,
       title,
@@ -24,6 +24,7 @@ router.route("/add").post(async (req, res) => {
       description,
       quantity,
       rating,
+      price,
     });
 
     console.log(NewItem);

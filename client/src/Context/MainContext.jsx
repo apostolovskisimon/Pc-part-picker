@@ -83,7 +83,21 @@ export const PeriodicProvider = (props) => {
     }
   };
 
-  console.log(activeCategory);
+  const [searchedItems, setSearchedItems] = useState([]);
+
+  // vidi za search
+  const handleSearch = async (query) => {
+    if (query !== "") {
+      const searchedThrough = itemList.filter((el) =>
+        el.title.toLowerCase().includes(query.toLowerCase())
+      );
+      setSearchedItems(searchedThrough);
+    } else {
+      setSearchedItems(itemList);
+    }
+  };
+
+  console.log(searchedItems);
   useEffect(() => {}, [user]);
   const sharedValue = {
     showLoginForm,
@@ -102,6 +116,8 @@ export const PeriodicProvider = (props) => {
     categorizedItems,
     setCategorizedItems,
     activeCategory,
+    handleSearch,
+    searchedItems,
   };
   return (
     <PeriodicContext.Provider value={sharedValue}>
