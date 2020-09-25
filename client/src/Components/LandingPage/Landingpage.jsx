@@ -1,25 +1,24 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { PeriodicContext } from "../../Context/MainContext";
-import Item from "../Item/Item";
 import ItemsList from "../ItemsList/ItemsList";
 import "./Landingpage.css";
 
 const LandingPage = () => {
-  const { loggedIn, setLoggedIn } = useContext(PeriodicContext);
-
   return (
     <React.Fragment>
       <div className="landing">
-        <h1>Welcome to PC Part Picker</h1>
-        <p>
-          Feel free to browse around and pick and item you wish and add it to
-          your cart.
-        </p>
-        <Link to="/shop">Check out our shop!</Link>
+        <div className="overlay">
+          <h1>Welcome to PC Part Picker!</h1>
+          <p>
+            Feel free to browse around,
+            <br /> but remember you need to be logged in so you can save your
+            favorite items in the cart.{" "}
+          </p>
+          <Link to="/products" className="link-shop">
+            Check out our products!
+          </Link>
+        </div>
       </div>
-      <h2>These are some of the most popular items we offer</h2>
-
       <ItemsList />
     </React.Fragment>
   );

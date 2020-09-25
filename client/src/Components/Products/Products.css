@@ -1,13 +1,21 @@
+.products-page {
+  width: 92%;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-top: 10vh;
+  height: 100vh;
+}
+
 .categories {
-  position: absolute;
   width: 15%;
-  background-color: black;
-  position: absolute;
-  left: 0;
-  top: 50%;
-  -webkit-transform: translate(0, -50%);
-          transform: translate(0, -50%);
-  height: 300px;
-  color: white;
+  position: fixed;
+  top: 40%;
+}
+
+.searchicn {
+  color: rebeccapurple;
+  margin-right: 5px;
 }
 /*# sourceMappingURL=Products.css.map */

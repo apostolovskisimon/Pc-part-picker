@@ -53,6 +53,7 @@ const LoginOrSignup = () => {
         setEmail("");
         setPassword("");
         history.push("/");
+        window.location.reload();
       })
       .catch((err) => {
         console.log(err);

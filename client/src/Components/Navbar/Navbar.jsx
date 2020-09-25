@@ -4,7 +4,11 @@ import { PeriodicContext } from "../../Context/MainContext";
 import "./navbar.css";
 import logo from "../../Assets/Images/LogoMakr_2qC11y.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
+import {
+  faShoppingBasket,
+  faUser,
+  faUserCircle,
+} from "@fortawesome/free-solid-svg-icons";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 const Navbar = () => {
   let history = useHistory();
@@ -18,6 +22,7 @@ const Navbar = () => {
   } = useContext(PeriodicContext);
 
   const [searchMode, setSearchMode] = useState(false);
+  const [toggleUserMenu, setToggleUserMenu] = useState(false);
   return (
     <React.Fragment>
       <nav className="navbar">
@@ -26,58 +31,29 @@ const Navbar = () => {
             <img src={logo} alt="" />
           </Link>
         </div>
-        <div className="links">
-          <Link to="/" className="anchor">
-            Home
-          </Link>
-          <Link to="/products" className="anchor">
-            Products
-          </Link>
-          <Link to="" className="anchor">
-            <FontAwesomeIcon icon={faSearch} className="searchicn" />
-            <input
-              type="search"
-              placeholder="Search for an item"
-              onChange={(e) => {
-                handleSearch(e.target.value);
-                setSearchMode(true);
-                if (e.target.value === "") {
-                  setSearchMode(false);
-                }
-              }}
-            />
-          </Link>
-        </div>
+
         <div className="nav-form">
           {!loggedIn ? (
             <React.Fragment>
-              <Link to="login">Log In</Link>
-              <Link to="signup">Sign Up</Link>
+              <Link to="login" className="link">
+                Log In
+              </Link>
+              <Link to="signup" className="link">
+                Sign Up
+              </Link>
             </React.Fragment>
           ) : (
             <div className="user-control">
-              {user.cart.length > 0 && (
-                // LINK TO CART !
-                <Link to="/dashboard" className="shopcart">
-                  <FontAwesomeIcon icon={faCartPlus} className="shopIcon" />
-                  {user.cart.length}
-                </Link>
-              )}
-              <Link to="/dashboard">{user.displayName}</Link>
-              <div className="cart-icon"></div>
-              <button
-                onClick={() => {
-                  localStorage.removeItem("USER");
-                  setUser({
-                    displayName: "",
-                    email: "",
-                  });
-                  setLoggedIn(false);
-                  history.push("/");
-                }}
-              >
-                Log Out
-              </button>
+              {/* // LINK TO CART ! */}
+              <Link to="/dashboard" className="shopcart">
+                <FontAwesomeIcon icon={faShoppingBasket} className="shopIcon" />
+                <p>{user.cart.length}</p>
+              </Link>
+              <FontAwesomeIcon
+                icon={faUser}
+                className={toggleUserMenu ? "userIconToggled" : "userIcon"}
+                onClick={() => setToggleUserMenu(!toggleUserMenu)}
+              />
             </div>
           )}
         </div>
@@ -94,6 +70,29 @@ const Navbar = () => {
           </ul>
         )}
       </div>
+      {toggleUserMenu && (
+        <div className="user-menu">
+          <FontAwesomeIcon icon={faUserCircle} className="user" />
+          <Link to="/dashboard" className="userName">
+            {user.displayName}
+          </Link>
+          <button
+            onClick={() => {
+              localStorage.removeItem("USER");
+              setUser({
+                displayName: "",
+                email: "",
+              });
+              setLoggedIn(false);
+              history.push("/");
+              setToggleUserMenu(false);
+              window.location.reload();
+            }}
+          >
+            Log Out
+          </button>
+        </div>
+      )}
     </React.Fragment>
   );
 };

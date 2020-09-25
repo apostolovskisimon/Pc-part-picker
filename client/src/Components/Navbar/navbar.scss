@@ -11,10 +11,14 @@ $secondary-color: rgb(248, 249, 250);
   justify-content: space-between;
   align-items: center;
   padding: 0 5em 0 5em;
+  position: fixed;
+  z-index: 9999;
 }
+
 .navbar a {
   text-decoration: none;
 }
+
 .logo {
   height: 100px;
   width: 100px;
@@ -24,62 +28,109 @@ $secondary-color: rgb(248, 249, 250);
   height: 95%;
   width: 95%;
 }
-.links {
-  width: 50%;
-  text-align: center;
-}
 
-.anchor input {
-  margin-left: 1em;
-  border-radius: 10px;
-  border: 1px solid $primary-color;
-  padding: 0.8em;
-}
-
-.anchor {
-  margin-left: 4em;
-  text-decoration: none;
+.nav-form {
+  width: 8em;
+  display: flex;
+  justify-content: space-between;
   font-size: 1.4em;
 }
 
-.nav-form {
-  width: 10em;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  justify-content: space-around;
+.link {
+  padding-bottom: 3px;
+  border-bottom: 2px solid transparent;
+}
+
+.link:hover {
+  font-weight: bold;
+  border-bottom: 2px solid $primary-color;
+}
+
+.shopIcon,
+.userIcon {
+  font-size: 2.2em;
+  color: $primary-color;
+}
+
+.userIconToggled {
+  font-size: 2.2em;
+  color: lighten($color: $primary-color, $amount: 20%);
+}
+
+.userIconToggled:hover {
+  color: $primary-color;
+  cursor: pointer;
+}
+.shopIcon:hover,
+.userIcon:hover {
+  color: lighten($color: $primary-color, $amount: 20%);
+  cursor: pointer;
+}
+
+.shopcart p {
+  position: absolute;
+  right: 7.8em;
+  top: 0.4em;
+  background-color: rgb(254, 44, 191);
+  border: none;
+  color: $secondary-color;
+  border-radius: 50%;
+  padding: 2px 8px;
+  font-size: 1em;
+  font-weight: bold;
+  text-align: center;
 }
 
 .user-control {
   display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
+  width: 9em;
+  justify-content: space-between;
+  height: 100%;
+  align-items: center;
+}
+
+.user-menu {
+  position: fixed;
+  right: 2.3em;
+  top: 9.85vh;
+  background-color: $secondary-color;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  height: 18vh;
   width: 8em;
-  height: 80%;
+  text-decoration: none;
+  padding: 10px;
+  z-index: 9999;
 }
 
-.user-control a {
+.user {
+  font-size: 2.4em;
 }
 
-.shopcart {
-}
-
-.shopIcon {
-  font-size: 1.8em;
-}
-
-.user-control button {
+.user-menu button {
   background-color: $primary-color;
   color: $secondary-color;
   border: none;
   border-radius: 10px;
   padding: 4px 15px;
   transition: 0.3s ease-in-out;
+  margin-top: 5px;
 }
 
-.user-control button:hover {
+.user-menu button:hover {
   padding: 4px 25px;
   cursor: pointer;
+  background-color: lighten($color: $primary-color, $amount: 20%);
+}
+
+.userName {
+  text-decoration: none;
+  font-size: 1.2em;
+  width: 90%;
+  text-align: center;
+  word-wrap: break-word;
 }
 
 .search {

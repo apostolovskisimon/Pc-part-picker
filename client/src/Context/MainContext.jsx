@@ -86,17 +86,18 @@ export const PeriodicProvider = (props) => {
   const [searchedItems, setSearchedItems] = useState([]);
 
   // vidi za search
-  const handleSearch = async (query) => {
+  const handleSearch = (query) => {
     if (query !== "") {
       const searchedThrough = itemList.filter((el) =>
         el.title.toLowerCase().includes(query.toLowerCase())
       );
-      setSearchedItems(searchedThrough);
+      setCategorizedItems(searchedThrough);
     } else {
-      setSearchedItems(itemList);
+      setCategorizedItems(itemList);
     }
   };
 
+  const [searchMode, setSearchMode] = useState(false);
   console.log(searchedItems);
   useEffect(() => {}, [user]);
   const sharedValue = {
@@ -118,6 +119,8 @@ export const PeriodicProvider = (props) => {
     activeCategory,
     handleSearch,
     searchedItems,
+    searchMode,
+    setSearchMode,
   };
   return (
     <PeriodicContext.Provider value={sharedValue}>

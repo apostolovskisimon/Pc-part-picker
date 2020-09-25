@@ -19,19 +19,57 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  position: relative;
 }
 
-.item-content {
-  width: 90%;
-  margin: 0 auto;
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-flow: row wrap;
-          flex-flow: row wrap;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.overlay h1 {
+  font-size: 3em;
+}
+
+.overlay p {
+  margin-top: 0.9em;
+  font-size: 1.8em;
+  text-align: center;
+}
+
+.link-shop {
+  position: absolute;
+  bottom: 25%;
+  left: 19%;
+  color: white;
+  font-size: 2em;
+  text-decoration: none;
+  padding: 5px 10px;
+  border: 2px solid white;
+  border-radius: 10px;
+  font-weight: bold;
+  -webkit-transition: 0.15s border ease-in;
+  transition: 0.15s border ease-in;
+}
+
+.link-shop:hover {
+  border: 5px solid white;
 }
 /*# sourceMappingURL=Landingpage.css.map */

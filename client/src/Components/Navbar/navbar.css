@@ -14,6 +14,8 @@
       -ms-flex-align: center;
           align-items: center;
   padding: 0 5em 0 5em;
+  position: fixed;
+  z-index: 9999;
 }
 
 .navbar a {
@@ -30,57 +32,107 @@
   width: 95%;
 }
 
-.links {
-  width: 50%;
-  text-align: center;
-}
-
-.anchor input {
-  margin-left: 1em;
-  border-radius: 10px;
-  border: 1px solid #18154c;
-  padding: 0.8em;
-}
-
-.anchor {
-  margin-left: 4em;
-  text-decoration: none;
-  font-size: 1.4em;
-}
-
 .nav-form {
-  width: 10em;
+  width: 8em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  height: 100%;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  font-size: 1.4em;
+}
+
+.link {
+  padding-bottom: 3px;
+  border-bottom: 2px solid transparent;
+}
+
+.link:hover {
+  font-weight: bold;
+  border-bottom: 2px solid #18154c;
+}
+
+.shopIcon,
+.userIcon {
+  font-size: 2.2em;
+  color: #18154c;
+}
+
+.userIconToggled {
+  font-size: 2.2em;
+  color: #312b9c;
+}
+
+.userIconToggled:hover {
+  color: #18154c;
+  cursor: pointer;
+}
+
+.shopIcon:hover,
+.userIcon:hover {
+  color: #312b9c;
+  cursor: pointer;
+}
+
+.shopcart p {
+  position: absolute;
+  right: 7.8em;
+  top: 0.4em;
+  background-color: #fe2cbf;
+  border: none;
+  color: #f8f9fa;
+  border-radius: 50%;
+  padding: 2px 8px;
+  font-size: 1em;
+  font-weight: bold;
+  text-align: center;
 }
 
 .user-control {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
+  width: 9em;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  height: 100%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.user-menu {
+  position: fixed;
+  right: 2.3em;
+  top: 9.85vh;
+  background-color: #f8f9fa;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-flow: row wrap;
-          flex-flow: row wrap;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 18vh;
   width: 8em;
-  height: 80%;
+  text-decoration: none;
+  padding: 10px;
+  z-index: 9999;
 }
 
-.shopIcon {
-  font-size: 1.8em;
+.user {
+  font-size: 2.4em;
 }
 
-.user-control button {
+.user-menu button {
   background-color: #18154c;
   color: #f8f9fa;
   border: none;
@@ -88,11 +140,21 @@
   padding: 4px 15px;
   -webkit-transition: 0.3s ease-in-out;
   transition: 0.3s ease-in-out;
+  margin-top: 5px;
 }
 
-.user-control button:hover {
+.user-menu button:hover {
   padding: 4px 25px;
   cursor: pointer;
+  background-color: #312b9c;
+}
+
+.userName {
+  text-decoration: none;
+  font-size: 1.2em;
+  width: 90%;
+  text-align: center;
+  word-wrap: break-word;
 }
 
 .search {
