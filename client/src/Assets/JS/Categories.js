@@ -1,8 +1,5 @@
 const Categories = [
   {
-    category: "All",
-  },
-  {
     category: "Motherboard",
   },
   {

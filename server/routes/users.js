@@ -80,4 +80,17 @@ router.route("/addToCart/:email").post(async (req, res) => {
   });
 });
 
+router.route("/deleteItem/:email").post(async (req, res) => {
+  await User.findOne({ email: req.params.email }).then((user) => {
+    const itemToDelete = user.cart.find((el) => el.id === req.body.id);
+    const newCart = user.cart.filter((el) => el.id !== itemToDelete.id);
+    console.log(newCart);
+    user.cart = newCart;
+    user
+      .save()
+      .then(() => res.json(user.cart))
+      .catch((err) => res.status(400).json("Error" + err));
+  });
+});
+
 module.exports = router;

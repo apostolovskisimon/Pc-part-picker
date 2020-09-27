@@ -42,7 +42,6 @@ const Item = ({ id, name, stars, quantity, description, price }) => {
               numberOfStars={5}
               name="rating"
             />
-            {/* <button onClick={() => handleAddToCart(id)}>Add to Cart</button> */}
           </div>
         </div>
         <div
@@ -50,7 +49,7 @@ const Item = ({ id, name, stars, quantity, description, price }) => {
           onMouseEnter={() => setIsFlipped(true)}
           onMouseLeave={() => setIsFlipped(false)}
         >
-          This is the back of the card.
+          <button onClick={() => handleAddToCart(id)}>Add to Cart</button>
         </div>
       </ReactCardFlip>
     </React.Fragment>

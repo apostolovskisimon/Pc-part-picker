@@ -18,6 +18,7 @@ const ItemsList = () => {
               stars={el.rating}
               quantity={el.quantity}
               description={el.description}
+              price={el.price}
             />
           );
         })}

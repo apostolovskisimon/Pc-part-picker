@@ -15,6 +15,7 @@ const Products = () => {
     handleSearch,
     setSearchMode,
     searchMode,
+    allActive,
   } = useContext(PeriodicContext);
 
   const [searchQuery, setSearchQuery] = useState("");
@@ -22,9 +23,12 @@ const Products = () => {
   return (
     <div className="products-page">
       <div className="categories">
-        {Categories.map((el, i) => {
-          return <ProductsSidemenu cat={el.category} key={i} />;
-        })}
+        <ul>
+          <li className={allActive ? "activeCat" : "notActive"}>All</li>
+          {Categories.map((el, i) => {
+            return <ProductsSidemenu cat={el.category} key={i} />;
+          })}
+        </ul>
 
         <FontAwesomeIcon icon={faSearch} className="searchicn" />
         <input
@@ -48,7 +52,7 @@ const Products = () => {
           Search
         </button>
       </div>
-      <div className="item-content">
+      <div className="shown-products">
         {searchMode
           ? categorizedItems.map((el, i) => {
               return (

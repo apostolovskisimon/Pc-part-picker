@@ -73,8 +73,12 @@ export const PeriodicProvider = (props) => {
 
   const [activeCategory, setActiveCategory] = useState("All");
   const [categorizedItems, setCategorizedItems] = useState([]);
+  const [allActive, setAllActive] = useState(true);
+
   const handleActiveCateogry = (id) => {
     if (id === "All") {
+      setAllActive(true);
+      setActiveCategory("All");
       setCategorizedItems(itemList);
     } else {
       const filteredItems = itemList.filter((el) => el.category === id);
@@ -82,7 +86,7 @@ export const PeriodicProvider = (props) => {
       setCategorizedItems(filteredItems);
     }
   };
-
+  console.log(activeCategory);
   const [searchedItems, setSearchedItems] = useState([]);
 
   // vidi za search
@@ -97,8 +101,20 @@ export const PeriodicProvider = (props) => {
     }
   };
 
+  const handleDeleteItem = async (id) => {
+    console.log(id);
+    await Axios.post(`http://localhost:5000/users/deleteItem/${user.email}`, {
+      id: id,
+    })
+      .then((res) => {
+        console.log(res.data);
+
+        setUser({ ...user, cart: res.data });
+      })
+      .catch((err) => console.log(err));
+  };
+
   const [searchMode, setSearchMode] = useState(false);
-  console.log(searchedItems);
   useEffect(() => {}, [user]);
   const sharedValue = {
     showLoginForm,
@@ -121,6 +137,9 @@ export const PeriodicProvider = (props) => {
     searchedItems,
     searchMode,
     setSearchMode,
+    allActive,
+    setAllActive,
+    handleDeleteItem,
   };
   return (
     <PeriodicContext.Provider value={sharedValue}>

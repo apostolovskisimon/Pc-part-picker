@@ -45,7 +45,7 @@ const Navbar = () => {
           ) : (
             <div className="user-control">
               {/* // LINK TO CART ! */}
-              <Link to="/dashboard" className="shopcart">
+              <Link to="/cart" className="shopcart">
                 <FontAwesomeIcon icon={faShoppingBasket} className="shopIcon" />
                 <p>{user.cart.length}</p>
               </Link>

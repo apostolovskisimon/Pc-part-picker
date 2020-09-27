@@ -37,22 +37,9 @@ router.route("/add").post(async (req, res) => {
   }
 });
 
-// router.route("/login").post(async (req, res) => {
-//   const userToFind = await User.findOne({ email: req.body.email });
-//   if (userToFind === null) {
-//     return res.status(400).send("Cant find user");
-//   }
-//   try {
-//     if (await bcrypt.compare(req.body.password, userToFind.password)) {
-//       res.send(userToFind);
-//       console.log("login");
-//     } else {
-//       res.send("No GO");
-//       console.log("fail");
-//     }
-//   } catch {
-//     res.status(500).send();
-//   }
+// router.route("/delete").delete(async (req, res) => {
+//   const itemToDelete = await Items.findOneAndDelete({ cart: req.body });
+//   console.log(itemToDelete);
 // });
 
 // router.route("/:id").get((req, res) => {

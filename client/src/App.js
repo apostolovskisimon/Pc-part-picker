@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Cart from "./Components/Cart/Cart";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import LandingPage from "./Components/LandingPage/Landingpage";
 import Login from "./Components/Login/Signup/Login";
@@ -20,6 +21,7 @@ function App() {
             <Route path="/signup" exact component={Signup} />
             <Route path="/dashboard" exact component={Dashboard} />
             <Route path="/products" exact component={Products} />
+            <Route path="/cart" exact component={Cart} />
           </Switch>
         </Router>
       </PeriodicProvider>
