@@ -84,7 +84,6 @@ router.route("/deleteItem/:email").post(async (req, res) => {
   await User.findOne({ email: req.params.email }).then((user) => {
     const itemToDelete = user.cart.find((el) => el.id === req.body.id);
     const newCart = user.cart.filter((el) => el.id !== itemToDelete.id);
-    console.log(newCart);
     user.cart = newCart;
     user
       .save()

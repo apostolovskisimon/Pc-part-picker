@@ -14,12 +14,8 @@ const Item = ({ id, name, stars, quantity, description, price }) => {
   const [isFlipped, setIsFlipped] = useState(false);
   return (
     <React.Fragment>
-      <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
-        <div
-          className="item front"
-          onMouseEnter={() => setIsFlipped(true)}
-          onMouseLeave={() => setIsFlipped(false)}
-        >
+      <ReactCardFlip isFlipped={isFlipped} flipDirection="vertical">
+        <div className="item front" onMouseEnter={() => setIsFlipped(true)}>
           <div className="item-pic">
             <img
               src="https://images-na.ssl-images-amazon.com/images/I/51iVSqLIBWL._AC_.jpg"
@@ -44,11 +40,7 @@ const Item = ({ id, name, stars, quantity, description, price }) => {
             />
           </div>
         </div>
-        <div
-          className="item back"
-          onMouseEnter={() => setIsFlipped(true)}
-          onMouseLeave={() => setIsFlipped(false)}
-        >
+        <div className="item back" onMouseLeave={() => setIsFlipped(false)}>
           <button onClick={() => handleAddToCart(id)}>Add to Cart</button>
         </div>
       </ReactCardFlip>
