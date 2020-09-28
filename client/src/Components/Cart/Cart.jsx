@@ -7,7 +7,7 @@ import "./Cart.css";
 
 const Cart = () => {
   const { user } = useContext(PeriodicContext);
-  console.log(user.cart);
+
   return (
     <div className="cart">
       <div className="cart-heading">

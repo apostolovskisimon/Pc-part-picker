@@ -11,11 +11,12 @@ const Dashboard = () => {
       <div className="dashboard">
         <h1>HELLO!</h1>
         <h2>{user.displayName}</h2>
-        <p>Items in cart: {user.cart.length}</p>
-        {user.cart.map((el, i) => {
+        <p>You have purchased:</p>
+        {user.purchaseHistory.map((el, i) => {
           return (
             <p key={i}>
-              {el.title}, a {el.description}.
+              #{el.quantity} of {el.title} for a total of{" "}
+              {el.quantity * el.price}
             </p>
           );
         })}

@@ -114,15 +114,22 @@ export const PeriodicProvider = (props) => {
 
   const [buyMode, setBuyMode] = useState(false);
 
-  const handleBuyItem = async (id) => {
-    const itemToBuy = user.cart.find((el) => el.id === id);
-    console.log(itemToBuy);
-    // await Axios.post(`http://localhost:5000/users/deleteItem/${user.email}`, {
-    //   id: itemToBuy.id,
-    //   quantity: itemToBuy.quantity,
-    // })
-    //   .then((res) => setUser({ ...user, cart: res.data }))
-    //   .catch((err) => console.log(err));
+  const handleBuyItem = async (id, quantity) => {
+    let itemToBuy = user.cart.find((el) => el.id === id);
+    itemToBuy.quantity = parseInt(quantity);
+    console.log("itemtobuy >>", itemToBuy);
+    await Axios.post(`http://localhost:5000/users/buyItem/${user.email}`, {
+      id: itemToBuy.id,
+      quantity: parseInt(quantity),
+    })
+      .then((res) => {
+        setUser({
+          ...user,
+          purchaseHistory: res.data.purchaseHistory,
+          cart: res.data.cart,
+        });
+      })
+      .catch((err) => console.log(err));
   };
 
   const [searchMode, setSearchMode] = useState(false);

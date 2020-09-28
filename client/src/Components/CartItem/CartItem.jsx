@@ -46,8 +46,9 @@ const CartItem = ({ title, desc, stars, price, id }) => {
               <select
                 name="quantity"
                 id="quant"
-                onChange={(e) => setQuantity(e.target.value)}
-                value={quantity}
+                onChange={(e) => {
+                  setQuantity(e.target.value);
+                }}
               >
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -61,7 +62,7 @@ const CartItem = ({ title, desc, stars, price, id }) => {
               <div className="cart-actions">
                 <button
                   onClick={() => {
-                    handleBuyItem(id);
+                    handleBuyItem(id, quantity);
                   }}
                 >
                   Buy Now

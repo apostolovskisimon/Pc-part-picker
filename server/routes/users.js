@@ -95,14 +95,19 @@ router.route("/deleteItem/:email").post(async (req, res) => {
 router.route("/buyItem/:email").post(async (req, res) => {
   console.log(req.body);
   await User.findOne({ email: req.params.email }).then((user) => {
-    const itemToBuy = user.cart.find((el) => el.id === req.body.id);
-    console.log(itemToBuy);
+    let itemToBuy = user.cart.find((el) => el.id === req.body.id);
+    itemToBuy.quantity = req.body.quantity;
     user.purchaseHistory.push(itemToBuy);
     const updatedCart = user.cart.filter((el) => el.id !== itemToBuy.id);
     user.cart = updatedCart;
     user
       .save()
-      .then(() => res.json(user.purchaseHistory))
+      .then(() =>
+        res.json({
+          purchaseHistory: user.purchaseHistory,
+          cart: user.cart,
+        })
+      )
       .catch((err) => res.status(400).json("Error" + err));
   });
 });
