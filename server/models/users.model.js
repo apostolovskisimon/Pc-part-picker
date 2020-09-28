@@ -21,6 +21,9 @@ const UsersSchema = new Schema({
   cart: {
     type: Array,
   },
+  purchaseHistory: {
+    type: Array,
+  },
 });
 
 const User = mongoose.model("users", UsersSchema);

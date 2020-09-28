@@ -92,4 +92,19 @@ router.route("/deleteItem/:email").post(async (req, res) => {
   });
 });
 
+router.route("/buyItem/:email").post(async (req, res) => {
+  console.log(req.body);
+  await User.findOne({ email: req.params.email }).then((user) => {
+    const itemToBuy = user.cart.find((el) => el.id === req.body.id);
+    console.log(itemToBuy);
+    user.purchaseHistory.push(itemToBuy);
+    const updatedCart = user.cart.filter((el) => el.id !== itemToBuy.id);
+    user.cart = updatedCart;
+    user
+      .save()
+      .then(() => res.json(user.purchaseHistory))
+      .catch((err) => res.status(400).json("Error" + err));
+  });
+});
+
 module.exports = router;

@@ -12,6 +12,7 @@ export const PeriodicProvider = (props) => {
     email: "",
     id: "",
     cart: [],
+    purchaseHistory: [],
   });
 
   const loginOnServer = async () => {
@@ -26,6 +27,7 @@ export const PeriodicProvider = (props) => {
           email: res.data.email,
           id: res.data._id,
           cart: res.data.cart,
+          purchaseHistory: res.data.purchaseHistory,
         });
         setLoggedIn(true);
       })
@@ -106,16 +108,25 @@ export const PeriodicProvider = (props) => {
     await Axios.post(`http://localhost:5000/users/deleteItem/${user.email}`, {
       id: id,
     })
-      .then((res) => {
-        console.log(res.data);
-
-        setUser({ ...user, cart: res.data });
-      })
+      .then((res) => setUser({ ...user, cart: res.data }))
       .catch((err) => console.log(err));
   };
 
+  const [buyMode, setBuyMode] = useState(false);
+
+  const handleBuyItem = async (id) => {
+    const itemToBuy = user.cart.find((el) => el.id === id);
+    console.log(itemToBuy);
+    // await Axios.post(`http://localhost:5000/users/deleteItem/${user.email}`, {
+    //   id: itemToBuy.id,
+    //   quantity: itemToBuy.quantity,
+    // })
+    //   .then((res) => setUser({ ...user, cart: res.data }))
+    //   .catch((err) => console.log(err));
+  };
+
   const [searchMode, setSearchMode] = useState(false);
-  useEffect(() => {}, [user]);
+
   const sharedValue = {
     showLoginForm,
     setShowLoginForm,
@@ -140,6 +151,8 @@ export const PeriodicProvider = (props) => {
     allActive,
     setAllActive,
     handleDeleteItem,
+    handleBuyItem,
+    buyMode,
   };
   return (
     <PeriodicContext.Provider value={sharedValue}>

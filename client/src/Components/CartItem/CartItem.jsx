@@ -5,20 +5,21 @@ import StarRatings from "react-star-ratings";
 import "./CartItem.css";
 
 const CartItem = ({ title, desc, stars, price, id }) => {
-  const { user, handleDeleteItem } = useContext(PeriodicContext);
+  const { user, handleDeleteItem, handleBuyItem } = useContext(PeriodicContext);
   const [rating, setRating] = useState(0);
+  const [quantity, setQuantity] = useState(1);
 
   const changeRating = (newRating, name) => {
     setRating(newRating);
   };
-
+  console.log("quantity>", quantity);
   return (
     <div className="cart-collection">
       <table>
         <thead>
           <tr>
             <th colSpan="3">Details</th>
-            <th>Price</th>
+            <th>Quantity and Price</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -42,11 +43,29 @@ const CartItem = ({ title, desc, stars, price, id }) => {
               <p className="cart-desc">{desc}</p>
             </td>
             <td>
-              <p className="cart-price">$300</p>
+              <select
+                name="quantity"
+                id="quant"
+                onChange={(e) => setQuantity(e.target.value)}
+                value={quantity}
+              >
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+              <p className="cart-price">${quantity * price}</p>
             </td>
             <td>
               <div className="cart-actions">
-                <button>Buy Now</button>
+                <button
+                  onClick={() => {
+                    handleBuyItem(id);
+                  }}
+                >
+                  Buy Now
+                </button>
                 <button
                   onClick={() => {
                     handleDeleteItem(id);
