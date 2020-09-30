@@ -63,6 +63,7 @@ export const PeriodicProvider = (props) => {
 
     Axios.get("http://localhost:5000/items/")
       .then((res) => {
+        console.log(res.data);
         setItemList(res.data);
         setPopularItems(
           res.data.sort(() => Math.random() - Math.random()).slice(0, 3)
@@ -72,6 +73,12 @@ export const PeriodicProvider = (props) => {
         console.log(err);
       });
   }, []);
+
+  const nextPage = () => {
+    Axios.get(`http://localhost:5000/items?page=1&limit=10`)
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err));
+  };
 
   const [activeCategory, setActiveCategory] = useState("All");
   const [categorizedItems, setCategorizedItems] = useState([]);
@@ -156,6 +163,7 @@ export const PeriodicProvider = (props) => {
     popularItems,
     handleAddToCart,
     itemList,
+    nextPage,
     setItemList,
     handleActiveCateogry,
     categorizedItems,

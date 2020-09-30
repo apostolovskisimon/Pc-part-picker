@@ -1,8 +1,38 @@
 const router = require("express").Router();
-const bcrypt = require("bcrypt");
 const Items = require("../models/items.model");
 
 router.route("/").get((req, res) => {
+  // try pagination
+  // console.log(req.query.limit);
+  // if (req.query.page && req.query.limit) {
+  //   const page = parseInt(req.query.page);
+  //   const limit = parseInt(req.query.limit);
+
+  //   const startIndex = (page - 1) * limit;
+  //   const endIndex = page * limit;
+
+  //   const results = {};
+
+  //   if (endIndex < Items.length) {
+  //     results.next = {
+  //       page: page + 1,
+  //       limit: limit,
+  //     };
+
+  //     if (startIndex > 0) {
+  //       results.previous = {
+  //         page: page - 1,
+  //         limit: limit,
+  //       };
+  //     }
+  //     console.log(Items.slice(startIndex, endIndex));
+  //     // results.results = Items.slice(startIndex, endIndex);
+  //   }
+  // } else {
+  //   Items.find()
+  //     .then((item) => res.json(item.slice(0, 6)))
+  //     .catch((err) => res.status(400).json("Error" + err));
+  // }
   Items.find()
     .then((item) => res.json(item))
     .catch((err) => res.status(400).json("Error" + err));
@@ -10,27 +40,29 @@ router.route("/").get((req, res) => {
 
 router.route("/add").post(async (req, res) => {
   try {
-    const id = Number(req.body.id);
     const title = req.body.title;
+    const image = req.body.image;
     const category = req.body.category;
-    const description = req.body.description;
+    const shortDesc = req.body.shortDesc;
     const quantity = Number(req.body.quantity);
     const rating = Number(req.body.rating);
     const price = Number(req.body.price);
+    const longDesc = req.body.longDesc;
     const NewItem = new Items({
-      id,
       title,
+      image,
       category,
-      description,
+      shortDesc,
       quantity,
       rating,
       price,
+      longDesc,
     });
 
     console.log(NewItem);
 
     NewItem.save()
-      .then(() => res.json("Added an item"))
+      .then(() => res.json(NewItem))
       .catch((err) => res.status(400).json("Error" + err));
   } catch {
     res.status(500).send();

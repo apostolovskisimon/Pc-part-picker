@@ -15,6 +15,8 @@ const Products = () => {
     setSearchMode,
     searchMode,
     allActive,
+    prevPage,
+    nextPage,
   } = useContext(PeriodicContext);
 
   const [searchQuery, setSearchQuery] = useState("");
@@ -61,8 +63,10 @@ const Products = () => {
                 name={el.title}
                 stars={el.rating}
                 quantity={el.quantity}
-                description={el.description}
+                shortDesc={el.shortDesc}
                 price={el.price}
+                image={el.image}
+                longDesc={el.longDesc}
               />
             );
           })
@@ -75,8 +79,10 @@ const Products = () => {
                 name={el.title}
                 stars={el.rating}
                 quantity={el.quantity}
-                description={el.description}
+                shortDesc={el.shortDesc}
                 price={el.price}
+                longDesc={el.longDesc}
+                image={el.image}
               />
             );
           })
@@ -90,14 +96,18 @@ const Products = () => {
                   name={el.title}
                   stars={el.rating}
                   quantity={el.quantity}
-                  description={el.description}
+                  shortDesc={el.shortDesc}
                   price={el.price}
+                  longDesc={el.longDesc}
+                  image={el.image}
                 />
               );
             })}
           </React.Fragment>
         )}
       </div>
+      {/* <button onClick={() => prevPage()}>Prev</button>
+      <button onClick={() => nextPage()}>Next</button> */}
     </div>
   );
 };

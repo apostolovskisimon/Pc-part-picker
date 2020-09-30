@@ -4,23 +4,24 @@ import StarRatings from "react-star-ratings";
 import { PeriodicContext } from "../../Context/MainContext";
 import "./Item.css";
 
-const Item = ({ id, name, stars, quantity, description, price }) => {
+const Item = ({ id, name, stars, shortDesc, price, image, longDesc }) => {
   const { handleAddToCart } = useContext(PeriodicContext);
-
   const [isFlipped, setIsFlipped] = useState(false);
   return (
     <React.Fragment>
       <ReactCardFlip isFlipped={isFlipped} flipDirection="vertical">
         <div className="item front" onMouseEnter={() => setIsFlipped(true)}>
           <div className="item-pic">
-            <img
-              src="https://images-na.ssl-images-amazon.com/images/I/51iVSqLIBWL._AC_.jpg"
-              alt=""
-            />
+            {image && (
+              <img
+                src={require(`../../Assets/Images/${image}.jpg`)}
+                alt="img"
+              />
+            )}
           </div>
           <div className="desc short">
             <h3>{name}</h3>
-            <p className="shortdesc">{description}</p>
+            <p className="shortdesc">{shortDesc}</p>
             <p className="price">Price: ${price}</p>
           </div>
           <div className="rating-cart">
@@ -36,6 +37,17 @@ const Item = ({ id, name, stars, quantity, description, price }) => {
           </div>
         </div>
         <div className="item back" onMouseLeave={() => setIsFlipped(false)}>
+          <div>
+            <ul>
+              {longDesc.map((el, i) => {
+                return (
+                  <li key={i}>
+                    {Object.keys(el)}: {Object.values(el)}
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
           <button onClick={() => handleAddToCart(id)}>Add to Cart</button>
         </div>
       </ReactCardFlip>

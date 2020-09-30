@@ -3,9 +3,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const ItemSchema = new Schema({
-  id: {
-    type: Number,
+  image: {
+    type: String,
     required: true,
+    trim: true,
   },
   title: {
     type: String,
@@ -17,7 +18,7 @@ const ItemSchema = new Schema({
     required: true,
     trim: true,
   },
-  description: {
+  shortDesc: {
     type: String,
     required: true,
     trim: true,
@@ -32,6 +33,11 @@ const ItemSchema = new Schema({
   },
   price: {
     type: Number,
+    required: true,
+  },
+  longDesc: {
+    type: Array,
+    default: [],
     required: true,
   },
 });
