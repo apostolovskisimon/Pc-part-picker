@@ -1,7 +1,12 @@
 .cart {
-  padding-top: 10vh;
+  padding-top: 15vh;
   position: relative;
-  height: 100vh;
+  height: 100%;
+}
+
+.cart table {
+  width: 92%;
+  margin: 0 auto;
 }
 
 .overlay-cart {
@@ -77,5 +82,20 @@
 .close-ticket:hover {
   color: darkred;
   cursor: pointer;
+}
+
+.productLink {
+  padding: 10px 12px;
+  background-color: #7a3db8;
+  border-radius: 10px;
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+  -webkit-transition: 0.1s ease-in;
+  transition: 0.1s ease-in;
+}
+
+.productLink:hover {
+  background-color: #4d2673;
 }
 /*# sourceMappingURL=Cart.css.map */

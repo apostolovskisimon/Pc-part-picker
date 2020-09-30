@@ -35,24 +35,38 @@ const Cart = () => {
           </div>
         )}
         <div className="cart-heading">
-          <Link to="/products">Browse products</Link>
+          <Link to="/products" className="productLink">
+            Back to products
+          </Link>
         </div>
 
         {user.cart.length === 0 ? (
           <h2>Its empty in here. Try adding some items</h2>
         ) : (
-          user.cart.map((el, i) => {
-            return (
-              <CartItem
-                key={i}
-                title={el.title}
-                desc={el.description}
-                stars={el.rating}
-                price={el.price}
-                id={el.id}
-              />
-            );
-          })
+          <table>
+            <thead>
+              <tr>
+                <th colSpan="3">Details</th>
+                <th>Quantity and Price</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {user.cart.map((el, i) => {
+                return (
+                  <CartItem
+                    key={i}
+                    title={el.title}
+                    desc={el.description}
+                    stars={el.rating}
+                    price={el.price}
+                    id={el.id}
+                    category={el.category}
+                  />
+                );
+              })}
+            </tbody>
+          </table>
         )}
       </div>
     </React.Fragment>
