@@ -1,19 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
-import "./ProductsSidemenu.css";
-import Categories from "../../Assets/JS/Categories";
 import { PeriodicContext } from "../../Context/MainContext";
-import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import "./ProductsSidemenu.css";
 const ProductsSidemenu = ({ cat }) => {
   const {
     handleActiveCateogry,
     activeCategory,
-    categorizedItems,
-    handleSearch,
     setSearchMode,
     allActive,
-    setAllActive,
   } = useContext(PeriodicContext);
 
   const [handleActive, setHandleActive] = useState("All");
@@ -26,7 +19,7 @@ const ProductsSidemenu = ({ cat }) => {
   return (
     <React.Fragment>
       <li
-        className={handleActive == activeCategory ? "activeCat" : "notActive"}
+        className={handleActive === activeCategory ? "activeCat" : "notActive"}
         id={cat}
         onClick={(e) => {
           if (allActive) {

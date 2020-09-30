@@ -1,7 +1,6 @@
 import axios from "axios";
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { PeriodicContext } from "../../../Context/MainContext";
 import "./LoginOrSignup.css";
 const Signup = () => {
   let history = useHistory();

@@ -1,15 +1,11 @@
 import React, { useContext, useState } from "react";
+import ReactCardFlip from "react-card-flip";
 import StarRatings from "react-star-ratings";
 import { PeriodicContext } from "../../Context/MainContext";
 import "./Item.css";
-import ReactCardFlip from "react-card-flip";
-const Item = ({ id, name, stars, quantity, description, price }) => {
-  const { cart, handleAddToCart } = useContext(PeriodicContext);
-  const [rating, setRating] = useState(0);
 
-  const changeRating = (newRating, name) => {
-    setRating(newRating);
-  };
+const Item = ({ id, name, stars, quantity, description, price }) => {
+  const { handleAddToCart } = useContext(PeriodicContext);
 
   const [isFlipped, setIsFlipped] = useState(false);
   return (
@@ -32,7 +28,6 @@ const Item = ({ id, name, stars, quantity, description, price }) => {
             <StarRatings
               rating={stars}
               starRatedColor="blue"
-              changeRating={changeRating}
               starDimension="20px"
               starSpacing="2px"
               numberOfStars={5}
@@ -45,6 +40,7 @@ const Item = ({ id, name, stars, quantity, description, price }) => {
         </div>
       </ReactCardFlip>
     </React.Fragment>
+
     // <div className="item">
     //   <div className="item-pic">
     //     <img

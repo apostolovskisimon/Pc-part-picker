@@ -88,8 +88,8 @@ export const PeriodicProvider = (props) => {
       setCategorizedItems(filteredItems);
     }
   };
-  console.log(activeCategory);
-  const [searchedItems, setSearchedItems] = useState([]);
+
+  // const [searchedItems, setSearchedItems] = useState([]);
 
   // vidi za search
   const handleSearch = (query) => {
@@ -143,7 +143,6 @@ export const PeriodicProvider = (props) => {
   };
 
   const [searchMode, setSearchMode] = useState(false);
-  console.log("buyed>>>", buyedItem);
 
   const sharedValue = {
     showLoginForm,
@@ -163,7 +162,7 @@ export const PeriodicProvider = (props) => {
     setCategorizedItems,
     activeCategory,
     handleSearch,
-    searchedItems,
+    // searchedItems,
     searchMode,
     setSearchMode,
     allActive,

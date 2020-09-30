@@ -5,20 +5,10 @@ import { PeriodicContext } from "../../../Context/MainContext";
 import "./LoginOrSignup.css";
 const LoginOrSignup = () => {
   let history = useHistory();
-  const {
-    showLoginForm,
-    setShowLoginForm,
-    showSignupForm,
-    setShowSignupForm,
-    loggedIn,
-    setLoggedIn,
-    user,
-    setUser,
-  } = useContext(PeriodicContext);
+  const { setLoggedIn, setUser } = useContext(PeriodicContext);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [id, setId] = useState("");
 
   const LogIn = async (e) => {
     e.preventDefault();
@@ -27,7 +17,6 @@ const LoginOrSignup = () => {
     const userLoggingIn = {
       email,
       password,
-      id,
     };
     await axios
       .post("http://localhost:5000/users/login", userLoggingIn, {

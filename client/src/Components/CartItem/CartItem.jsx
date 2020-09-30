@@ -1,17 +1,12 @@
-import React, { useState } from "react";
-import { useContext } from "react";
-import { PeriodicContext } from "../../Context/MainContext";
+import React, { useContext, useState } from "react";
 import StarRatings from "react-star-ratings";
+import { PeriodicContext } from "../../Context/MainContext";
 import "./CartItem.css";
 
 const CartItem = ({ title, desc, stars, price, id, category }) => {
-  const { user, handleDeleteItem, handleBuyItem } = useContext(PeriodicContext);
-  const [rating, setRating] = useState(0);
+  const { handleDeleteItem, handleBuyItem } = useContext(PeriodicContext);
   const [quantity, setQuantity] = useState(1);
 
-  const changeRating = (newRating, name) => {
-    setRating(newRating);
-  };
   return (
     <tr>
       <td colSpan="3">
@@ -21,7 +16,6 @@ const CartItem = ({ title, desc, stars, price, id, category }) => {
           <StarRatings
             rating={stars}
             starRatedColor="orange"
-            changeRating={changeRating}
             starDimension="17px"
             starSpacing="2px"
             numberOfStars={5}

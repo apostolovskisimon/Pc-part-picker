@@ -1,27 +1,18 @@
-import React, { useContext, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
-import { PeriodicContext } from "../../Context/MainContext";
-import "./navbar.css";
-import logo from "../../Assets/Images/LogoMakr_2qC11y.png";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faShoppingBasket,
   faUser,
   faUserCircle,
 } from "@fortawesome/free-solid-svg-icons";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useContext, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+import logo from "../../Assets/Images/LogoMakr_2qC11y.png";
+import { PeriodicContext } from "../../Context/MainContext";
+import "./navbar.css";
 const Navbar = () => {
   let history = useHistory();
-  const {
-    loggedIn,
-    user,
-    setUser,
-    setLoggedIn,
-    handleSearch,
-    searchedItems,
-  } = useContext(PeriodicContext);
+  const { loggedIn, user, setUser, setLoggedIn } = useContext(PeriodicContext);
 
-  const [searchMode, setSearchMode] = useState(false);
   const [toggleUserMenu, setToggleUserMenu] = useState(false);
   return (
     <React.Fragment>
@@ -58,18 +49,7 @@ const Navbar = () => {
           )}
         </div>
       </nav>
-      <div className={searchMode ? "search on" : "search off"}>
-        {searchMode && (
-          <ul>
-            {searchedItems.map((el) => {
-              // MAKE THEM LINKS OR PUT WHOLE SEARH IN CATEGORY
-              // AND WHEN YOU SEARCH CLICK ACCEPT AS FILTER
-              // AND FILTER THE ITEMS SO THE DOUBLSIDE CARD WORKS
-              return <li>{el.title}</li>;
-            })}
-          </ul>
-        )}
-      </div>
+
       {toggleUserMenu && (
         <div className="user-menu">
           <FontAwesomeIcon icon={faUserCircle} className="user" />
