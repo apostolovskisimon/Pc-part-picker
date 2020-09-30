@@ -113,11 +113,20 @@ export const PeriodicProvider = (props) => {
   };
 
   const [buyMode, setBuyMode] = useState(false);
+  const [buyedItem, setBuyedItem] = useState(undefined);
 
   const handleBuyItem = async (id, quantity) => {
-    let itemToBuy = user.cart.find((el) => el.id === id);
-    itemToBuy.quantity = parseInt(quantity);
-    console.log("itemtobuy >>", itemToBuy);
+    const itemToBuy = user.cart.find((el) => el.id === id);
+    setBuyedItem({
+      title: itemToBuy.title,
+      category: itemToBuy.category,
+      description: itemToBuy.description,
+      id: itemToBuy.id,
+      price: itemToBuy.price,
+      quantity: parseInt(quantity),
+      rating: itemToBuy.rating,
+      ticketID: new Date().getTime(),
+    });
     await Axios.post(`http://localhost:5000/users/buyItem/${user.email}`, {
       id: itemToBuy.id,
       quantity: parseInt(quantity),
@@ -128,11 +137,13 @@ export const PeriodicProvider = (props) => {
           purchaseHistory: res.data.purchaseHistory,
           cart: res.data.cart,
         });
+        setBuyMode(true);
       })
       .catch((err) => console.log(err));
   };
 
   const [searchMode, setSearchMode] = useState(false);
+  console.log("buyed>>>", buyedItem);
 
   const sharedValue = {
     showLoginForm,
@@ -160,6 +171,9 @@ export const PeriodicProvider = (props) => {
     handleDeleteItem,
     handleBuyItem,
     buyMode,
+    setBuyMode,
+    buyedItem,
+    setBuyedItem,
   };
   return (
     <PeriodicContext.Provider value={sharedValue}>

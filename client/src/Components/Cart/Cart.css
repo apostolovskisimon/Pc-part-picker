@@ -1,4 +1,81 @@
 .cart {
   padding-top: 10vh;
+  position: relative;
+  height: 100vh;
+}
+
+.overlay-cart {
+  position: absolute;
+  top: 0;
+  padding-top: 10vh;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  z-index: 2;
+}
+
+.ticket {
+  height: 40vh;
+  background-color: white;
+  width: 30%;
+  padding: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.ticket h3 {
+  border-bottom: 2px solid black;
+  font-size: 1em;
+  padding-bottom: 1vh;
+}
+
+.ticket span {
+  font-size: 0.8em;
+  float: right;
+  font-weight: bold;
+}
+
+.ticket-details {
+  margin-top: 10px;
+  height: 80%;
+}
+
+.ticket h4 {
+  font-weight: bold;
+  font-size: 1.4em;
+  margin-bottom: 1.5vh;
+}
+
+.ticket-total {
+  border-top: 2px solid red;
+  padding: 1vh;
+}
+
+.close-ticket {
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  color: red;
+  margin-bottom: 1vh;
+  font-size: 1.3em;
+}
+
+.close-ticket:hover {
+  color: darkred;
+  cursor: pointer;
 }
 /*# sourceMappingURL=Cart.css.map */

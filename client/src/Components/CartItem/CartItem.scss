@@ -86,16 +86,66 @@ td img {
   font-size: 1.1em;
 }
 
+.price-per {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -55%);
+  text-align: center;
+  width: 100%;
+}
 .cart-price {
   position: absolute;
-  top: 50%;
+  bottom: 10%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -10%);
+  font-weight: bold;
 }
 
 .cart-actions {
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-buy,
+.btn-del {
+  padding: 17px;
+  margin: 5px;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-weight: 600;
+  font-size: 1em;
+}
+
+.btn-buy {
+  background-color: darkgreen;
+}
+.btn-del {
+  background-color: darkred;
+}
+
+.btn-buy:hover {
+  background-color: darken(darkgreen, $amount: 5%);
+  cursor: pointer;
+}
+
+.btn-del:hover {
+  background-color: darken(darkred, $amount: 5%);
+  cursor: pointer;
+}
+
+.item-amount-price {
   position: absolute;
-  top: 50%;
+  top: 10%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -10%);
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.item-amount-price select {
+  border: 1px solid black;
 }

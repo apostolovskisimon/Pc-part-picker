@@ -43,27 +43,35 @@ const CartItem = ({ title, desc, stars, price, id }) => {
               <p className="cart-desc">{desc}</p>
             </td>
             <td>
-              <select
-                name="quantity"
-                id="quant"
-                onChange={(e) => {
-                  setQuantity(e.target.value);
-                }}
-              >
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-              </select>
-              <p className="cart-price">${quantity * price}</p>
+              <div className="item-amount-price">
+                Amount of item:
+                <select
+                  name="quantity"
+                  id="quant"
+                  onChange={(e) => {
+                    setQuantity(e.target.value);
+                  }}
+                  value={quantity}
+                >
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
+              </div>
+              <p className="price-per">Price per 1 item: ${price}</p>
+              <br />
+              <p className="cart-price">Total: ${quantity * price}</p>
             </td>
             <td>
               <div className="cart-actions">
                 <button
                   onClick={() => {
                     handleBuyItem(id, quantity);
+                    setQuantity(1);
                   }}
+                  className="btn-buy"
                 >
                   Buy Now
                 </button>
@@ -71,6 +79,7 @@ const CartItem = ({ title, desc, stars, price, id }) => {
                   onClick={() => {
                     handleDeleteItem(id);
                   }}
+                  className="btn-del"
                 >
                   Delete
                 </button>
