@@ -7,7 +7,7 @@
   margin-bottom: 25px;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
   position: relative;
   padding: 8px;
 }
@@ -18,29 +18,78 @@
   display: flex;
   justify-content: center;
   border-bottom: 1px solid black;
-  // background-image: url("../../Assets/Images/3950X.jpg");
 }
 
 .item-pic img {
+  object-fit: contain;
   margin: 0 auto;
-  width: 70%;
+  width: 1000%;
   height: 100%;
 }
 
-.rating-cart {
-  width: 60%;
-  // padding-top: 25px;
+.ratingP {
+  position: absolute;
+  bottom: 4.3%;
+  padding-top: 25px;
+  font-size: 0.9em;
+  left: 0.6em;
+  font-weight: bold;
 }
 
-.desc {
+.starRatings {
+  position: absolute;
+  bottom: 0%;
 }
 
-.desc h3 {
+.item h3 {
+  position: absolute;
+  top: 53%;
   font-weight: bold;
 }
 
 .price {
   position: absolute;
-  right: 1.5em;
-  bottom: 15%;
+  right: 1em;
+  bottom: 4%;
+  font-weight: bold;
+}
+
+.shortdesc {
+  position: absolute;
+  top: 60%;
+  font-size: 1em;
+}
+
+.back ul {
+  margin-left: 1.5em;
+  margin-top: 1em;
+}
+
+.back ul li {
+  font-size: 1.1em;
+  margin-bottom: 10px;
+  list-style-type: square;
+}
+
+.objKeys {
+  font-weight: bold;
+}
+
+.objValues {
+  margin-left: 10px;
+}
+
+.back button {
+  padding: 10px;
+  font-size: 1.4em;
+  border: none;
+  border-radius: 10px;
+  background-color: lighten(rgb(24, 21, 76), $amount: 35%);
+  color: white;
+  transition: 0.2s ease;
+}
+
+.back button:hover {
+  cursor: pointer;
+  background-color: lighten(rgb(24, 21, 76), $amount: 5%);
 }

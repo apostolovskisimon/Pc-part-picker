@@ -19,17 +19,15 @@ const Item = ({ id, name, stars, shortDesc, price, image, longDesc }) => {
               />
             )}
           </div>
-          <div className="desc short">
-            <h3>{name}</h3>
-            <p className="shortdesc">{shortDesc}</p>
-            <p className="price">Price: ${price}</p>
-          </div>
-          <div className="rating-cart">
-            <p>Average rating</p>
+          <h3>{name}</h3>
+          <p className="shortdesc">{shortDesc}</p>
+          <p className="price">Price: ${price}</p>
+          <p className="ratingP">Rating:</p>
+          <div className="starRatings">
             <StarRatings
               rating={stars}
               starRatedColor="blue"
-              starDimension="20px"
+              starDimension="14px"
               starSpacing="2px"
               numberOfStars={5}
               name="rating"
@@ -42,7 +40,8 @@ const Item = ({ id, name, stars, shortDesc, price, image, longDesc }) => {
               {longDesc.map((el, i) => {
                 return (
                   <li key={i}>
-                    {Object.keys(el)}: {Object.values(el)}
+                    <span className="objKeys">{Object.keys(el)}:</span>
+                    <span className="objValues">{Object.values(el)}</span>
                   </li>
                 );
               })}
