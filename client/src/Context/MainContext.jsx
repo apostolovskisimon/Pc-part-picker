@@ -74,26 +74,23 @@ export const PeriodicProvider = (props) => {
       });
   }, []);
 
-  const nextPage = () => {
-    Axios.get(`http://localhost:5000/items?page=1&limit=10`)
-      .then((res) => console.log(res.data))
-      .catch((err) => console.log(err));
-  };
+  // const nextPage = () => {
+  //   Axios.get(`http://localhost:5000/items?page=1&limit=10`)
+  //     .then((res) => console.log(res.data))
+  //     .catch((err) => console.log(err));
+  // };
 
   const [activeCategory, setActiveCategory] = useState("All");
   const [categorizedItems, setCategorizedItems] = useState([]);
   const [allActive, setAllActive] = useState(true);
 
-  const handleActiveCateogry = (id) => {
-    if (id === "All") {
-      setAllActive(true);
-      setActiveCategory("All");
-      setCategorizedItems(itemList);
-    } else {
-      const filteredItems = itemList.filter((el) => el.category === id);
-      setActiveCategory(filteredItems[0].category);
-      setCategorizedItems(filteredItems);
-    }
+  const [itemsToShow, setItemsToShow] = useState([]);
+
+  const handleActiveCateogry = (query) => {
+    const items = itemList.filter(
+      (el) => el.category.toLowerCase() === query.toLowerCase()
+    );
+    setItemList(items);
   };
 
   // const [searchedItems, setSearchedItems] = useState([]);
@@ -163,11 +160,13 @@ export const PeriodicProvider = (props) => {
     popularItems,
     handleAddToCart,
     itemList,
-    nextPage,
+    // nextPage,
     setItemList,
     handleActiveCateogry,
     categorizedItems,
     setCategorizedItems,
+    itemsToShow,
+    setItemsToShow,
     activeCategory,
     handleSearch,
     // searchedItems,

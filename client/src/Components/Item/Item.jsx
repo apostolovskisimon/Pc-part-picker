@@ -21,13 +21,12 @@ const Item = ({ id, name, stars, shortDesc, price, image, longDesc }) => {
           </div>
           <h3>{name}</h3>
           <p className="shortdesc">{shortDesc}</p>
-          <p className="price">Price: ${price}</p>
           <p className="ratingP">Rating:</p>
           <div className="starRatings">
             <StarRatings
               rating={stars}
               starRatedColor="blue"
-              starDimension="14px"
+              starDimension="16px"
               starSpacing="2px"
               numberOfStars={5}
               name="rating"
@@ -47,6 +46,8 @@ const Item = ({ id, name, stars, shortDesc, price, image, longDesc }) => {
               })}
             </ul>
           </div>
+          <p className="price">Price: ${price}</p>
+
           <button onClick={() => handleAddToCart(id)}>Add to Cart</button>
         </div>
       </ReactCardFlip>

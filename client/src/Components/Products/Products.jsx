@@ -25,7 +25,7 @@ const Products = () => {
     <div className="products-page">
       <div className="categories">
         <ul>
-          <li className={allActive ? "activeCat" : "notActive"}>All</li>
+          <li>All</li>
           {Categories.map((el, i) => {
             return <ProductsSidemenu cat={el.category} key={i} />;
           })}

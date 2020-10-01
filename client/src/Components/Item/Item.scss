@@ -30,15 +30,16 @@
 .ratingP {
   position: absolute;
   bottom: 4.3%;
+  right: 3.2em;
   padding-top: 25px;
   font-size: 0.9em;
-  left: 0.6em;
   font-weight: bold;
 }
 
 .starRatings {
   position: absolute;
   bottom: 0%;
+  right: 0;
 }
 
 .item h3 {
@@ -50,7 +51,8 @@
 .price {
   position: absolute;
   right: 1em;
-  bottom: 4%;
+  bottom: 3em;
+  font-size: 1.2em;
   font-weight: bold;
 }
 

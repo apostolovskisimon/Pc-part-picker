@@ -7,29 +7,16 @@ const ProductsSidemenu = ({ cat }) => {
     activeCategory,
     setSearchMode,
     allActive,
+    itemsToShow,
+    setItemsToShow,
   } = useContext(PeriodicContext);
-
-  const [handleActive, setHandleActive] = useState("All");
-  const [categories, setCategories] = useState([]);
-
-  useEffect(() => {
-    console.log(handleActive);
-  }, [handleActive]);
 
   return (
     <React.Fragment>
       <li
-        className={handleActive === activeCategory ? "activeCat" : "notActive"}
         id={cat}
         onClick={(e) => {
-          if (allActive) {
-            handleActiveCateogry(e.currentTarget.id);
-            setHandleActive("All");
-          } else {
-            handleActiveCateogry(e.currentTarget.id);
-            setHandleActive(cat);
-            setSearchMode(false);
-          }
+          handleActiveCateogry(cat);
         }}
       >
         {cat}
