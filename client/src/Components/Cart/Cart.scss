@@ -1,7 +1,7 @@
 .cart {
   padding-top: 15vh;
   position: relative;
-  height: 100%;
+  height: 100vh;
 }
 
 .cart table {
@@ -74,14 +74,10 @@
 
 .productLink {
   padding: 10px 12px;
-  background-color: lighten(rebeccapurple, $amount: 8%);
+  background: linear-gradient(to right, #18154c, #3731a7);
   border-radius: 10px;
   color: white;
   text-decoration: none;
   margin-left: 20px;
   transition: 0.1s ease-in;
-}
-
-.productLink:hover {
-  background-color: darken(rebeccapurple, $amount: 10%);
 }

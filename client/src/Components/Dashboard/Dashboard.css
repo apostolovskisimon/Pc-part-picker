@@ -1,4 +1,15 @@
 .dashboard {
-  padding-top: 10vh;
+  padding: 10px;
+  padding-top: 15vh;
+  height: 100vh;
+}
+
+.purch {
+  font-size: 1.2em;
+  margin-top: 20px;
+}
+
+.purch-item {
+  margin-top: 10px;
 }
 /*# sourceMappingURL=Dashboard.css.map */

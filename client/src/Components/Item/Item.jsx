@@ -21,18 +21,20 @@ const Item = ({ id, name, stars, shortDesc, price, image, longDesc }) => {
               />
             )}
           </div>
-          <h3>{name}</h3>
-          <p className="shortdesc">{shortDesc}</p>
-          <p className="ratingP">Rating:</p>
-          <div className="starRatings">
-            <StarRatings
-              rating={stars}
-              starRatedColor="blue"
-              starDimension="16px"
-              starSpacing="2px"
-              numberOfStars={5}
-              name="rating"
-            />
+          <div className="item-desc">
+            <h3>{name}</h3>
+            <p className="shortdesc">{shortDesc}</p>
+            <p className="ratingP">Average Rating:</p>
+            <div className="starRatings">
+              <StarRatings
+                rating={stars}
+                starRatedColor="rgb(254, 35, 177)"
+                starDimension="16px"
+                starSpacing="2px"
+                numberOfStars={5}
+                name="rating"
+              />
+            </div>
           </div>
         </div>
         <div className="item back" onMouseLeave={() => setIsFlipped(false)}>
@@ -51,16 +53,12 @@ const Item = ({ id, name, stars, shortDesc, price, image, longDesc }) => {
           <p className="price">Price: ${price}</p>
 
           <button
-            className={showerror ? "cart-error" : "cart-button"}
+            className="cart-button"
             onClick={() => {
-              if (loggedIn) {
-                handleAddToCart(id);
-              } else {
-                setShowError(true);
-              }
+              handleAddToCart(id);
             }}
           >
-            {showerror ? "You must be logged to do that!" : "Add to Cart"}
+            {!loggedIn ? "Must be logged in to add to cart!" : "Add to Cart"}
           </button>
         </div>
       </ReactCardFlip>

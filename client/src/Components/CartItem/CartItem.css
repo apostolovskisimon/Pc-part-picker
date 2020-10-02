@@ -8,7 +8,7 @@
   -o-object-fit: contain;
      object-fit: contain;
   height: 100%;
-  width: 50%;
+  width: 25%;
 }
 
 .cartItemRating p {
@@ -78,10 +78,11 @@ td img {
   font-weight: 600;
 }
 
-.cart-desc {
-  top: 52%;
+.cart-shortDesc {
+  position: absolute;
+  bottom: 20%;
+  width: 70%;
   left: 30%;
-  font-size: 1.1em;
 }
 
 .price-per {
@@ -153,12 +154,11 @@ td img {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  font-size: 1.2em;
 }
 
 .item-amount-price select {
   border: 1px solid black;
+  margin-left: 5px;
 }
 /*# sourceMappingURL=CartItem.css.map */

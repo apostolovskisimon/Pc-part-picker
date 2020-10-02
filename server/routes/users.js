@@ -63,13 +63,14 @@ router.route("/:email").get((req, res) => {
 
 // da se zacuva vo contextot
 router.route("/addToCart/:email").post(async (req, res) => {
+  console.log(req.body);
   await User.findOne({ email: req.params.email }).then((user) => {
-    const item = user.cart.find((el) => el.id === req.body[0].id);
+    const item = user.cart.find((el) => el.id === req.body._id);
     if (item) {
       res.send("That item is already in your cart!");
       return;
     } else {
-      user.cart.push(req.body[0]);
+      user.cart.push(req.body);
       user
         .save()
         .then(() => {
@@ -93,12 +94,12 @@ router.route("/deleteItem/:email").post(async (req, res) => {
 });
 
 router.route("/buyItem/:email").post(async (req, res) => {
-  console.log(req.body);
   await User.findOne({ email: req.params.email }).then((user) => {
-    let itemToBuy = user.cart.find((el) => el.id === req.body.id);
+    let itemToBuy = user.cart.find((el) => el._id === req.body.id);
     itemToBuy.quantity = req.body.quantity;
     user.purchaseHistory.push(itemToBuy);
-    const updatedCart = user.cart.filter((el) => el.id !== itemToBuy.id);
+    const updatedCart = user.cart.filter((el) => el._id !== itemToBuy._id);
+    console.log(updatedCart);
     user.cart = updatedCart;
     user
       .save()

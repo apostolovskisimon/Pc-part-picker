@@ -71,7 +71,7 @@ $secondary-color: rgb(248, 249, 250);
   position: absolute;
   right: 7.8em;
   top: 0.4em;
-  background-color: rgb(254, 44, 191);
+  background-color: rgb(254, 35, 177);
   border: none;
   color: $secondary-color;
   border-radius: 50%;
@@ -110,7 +110,7 @@ $secondary-color: rgb(248, 249, 250);
 }
 
 .user-menu button {
-  background-color: $primary-color;
+  background-color: rgb(254, 35, 177);
   color: $secondary-color;
   border: none;
   border-radius: 10px;
@@ -122,7 +122,7 @@ $secondary-color: rgb(248, 249, 250);
 .user-menu button:hover {
   padding: 4px 25px;
   cursor: pointer;
-  background-color: lighten($color: $primary-color, $amount: 20%);
+  background-color: darken(rgb(254, 35, 177), $amount: 20%);
 }
 
 .userName {

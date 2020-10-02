@@ -35,8 +35,8 @@ const Cart = () => {
           </div>
         )}
         <div className="cart-heading">
-          <Link to="/products" className="productLink">
-            Back to products
+          <Link to="/" className="productLink">
+            Browse more
           </Link>
         </div>
 
@@ -57,10 +57,10 @@ const Cart = () => {
                   <CartItem
                     key={i}
                     title={el.title}
-                    desc={el.description}
+                    shortDesc={el.shortDesc}
                     stars={el.rating}
                     price={el.price}
-                    id={el.id}
+                    id={el._id}
                     category={el.category}
                     image={el.image}
                   />

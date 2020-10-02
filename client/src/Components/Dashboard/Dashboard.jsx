@@ -7,14 +7,15 @@ const Dashboard = () => {
   return (
     <React.Fragment>
       <div className="dashboard">
-        <h1>HELLO!</h1>
-        <h2>{user.displayName}</h2>
-        <p>You have purchased:</p>
+        <h1>Hello {user.displayName}!</h1>
+
+        <p className="purch">This is your purhcase history:</p>
         {user.purchaseHistory.map((el, i) => {
           return (
-            <p key={i}>
-              #{el.quantity} of {el.title} for a total of{" "}
-              {el.quantity * el.price}
+            <p key={i} className="purch-item">
+              <strong> #{el.quantity}</strong> of <strong>{el.title}</strong>{" "}
+              for a total of
+              <strong> ${el.quantity * el.price}</strong>
             </p>
           );
         })}

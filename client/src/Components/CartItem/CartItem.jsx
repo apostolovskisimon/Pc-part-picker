@@ -3,10 +3,9 @@ import StarRatings from "react-star-ratings";
 import { PeriodicContext } from "../../Context/MainContext";
 import "./CartItem.css";
 
-const CartItem = ({ title, desc, stars, price, id, category, image }) => {
+const CartItem = ({ title, shortDesc, stars, price, id, category, image }) => {
   const { handleDeleteItem, handleBuyItem } = useContext(PeriodicContext);
   const [quantity, setQuantity] = useState(1);
-
   return (
     <tr>
       <td colSpan="3">
@@ -19,7 +18,7 @@ const CartItem = ({ title, desc, stars, price, id, category, image }) => {
           <p>Average Rating:</p>
           <StarRatings
             rating={stars}
-            starRatedColor="orange"
+            starRatedColor="rgb(254, 35, 177)"
             starDimension="17px"
             starSpacing="2px"
             numberOfStars={5}
@@ -28,7 +27,7 @@ const CartItem = ({ title, desc, stars, price, id, category, image }) => {
         </div>
         <p className="categ">{category}</p>
         <p className="cart-title">{title}</p>
-        <p className="cart-desc">{desc}</p>
+        <p className="cart-shortDesc">{shortDesc}</p>
       </td>
       <td>
         <div className="item-amount-price">

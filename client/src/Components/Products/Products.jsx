@@ -41,7 +41,6 @@ const Products = () => {
           })}
         </ul>
 
-        <FontAwesomeIcon icon={faSearch} className="searchicn" />
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -78,7 +77,7 @@ const Products = () => {
             return (
               <Item
                 key={i}
-                id={el.id}
+                id={el._id}
                 name={el.title}
                 stars={el.rating}
                 quantity={el.quantity}
@@ -95,7 +94,7 @@ const Products = () => {
               return (
                 <Item
                   key={i}
-                  id={el.id}
+                  id={el._id}
                   name={el.title}
                   stars={el.rating}
                   quantity={el.quantity}

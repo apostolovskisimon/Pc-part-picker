@@ -37,7 +37,7 @@ export const PeriodicProvider = (props) => {
   const [itemList, setItemList] = useState([]);
 
   const handleAddToCart = async (id) => {
-    const itemToAdd = itemList.filter((el) => el.id === id);
+    const itemToAdd = itemList.find((el) => el._id === id);
     await Axios.post(
       `http://localhost:5000/users/addToCart/${user.email}`,
       itemToAdd
@@ -116,7 +116,7 @@ export const PeriodicProvider = (props) => {
   const [buyedItem, setBuyedItem] = useState(undefined);
 
   const handleBuyItem = async (id, quantity) => {
-    const itemToBuy = user.cart.find((el) => el.id === id);
+    const itemToBuy = user.cart.find((el) => el._id === id);
     setBuyedItem({
       title: itemToBuy.title,
       category: itemToBuy.category,
@@ -128,7 +128,7 @@ export const PeriodicProvider = (props) => {
       ticketID: new Date().getTime(),
     });
     await Axios.post(`http://localhost:5000/users/buyItem/${user.email}`, {
-      id: itemToBuy.id,
+      id: itemToBuy._id,
       quantity: parseInt(quantity),
     })
       .then((res) => {
