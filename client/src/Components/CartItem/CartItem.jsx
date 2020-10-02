@@ -3,14 +3,18 @@ import StarRatings from "react-star-ratings";
 import { PeriodicContext } from "../../Context/MainContext";
 import "./CartItem.css";
 
-const CartItem = ({ title, desc, stars, price, id, category }) => {
+const CartItem = ({ title, desc, stars, price, id, category, image }) => {
   const { handleDeleteItem, handleBuyItem } = useContext(PeriodicContext);
   const [quantity, setQuantity] = useState(1);
 
   return (
     <tr>
       <td colSpan="3">
-        <img src="" alt="" />
+        <img
+          className="imgs"
+          src={require(`../../Assets/Images/${image}.jpg`)}
+          alt="img"
+        />
         <div className="cart-stars">
           <p>Average Rating:</p>
           <StarRatings

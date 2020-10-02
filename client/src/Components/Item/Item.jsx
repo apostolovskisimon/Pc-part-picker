@@ -5,8 +5,10 @@ import { PeriodicContext } from "../../Context/MainContext";
 import "./Item.css";
 
 const Item = ({ id, name, stars, shortDesc, price, image, longDesc }) => {
-  const { handleAddToCart } = useContext(PeriodicContext);
+  const { handleAddToCart, loggedIn } = useContext(PeriodicContext);
   const [isFlipped, setIsFlipped] = useState(false);
+  const [showerror, setShowError] = useState(false);
+
   return (
     <React.Fragment>
       <ReactCardFlip isFlipped={isFlipped} flipDirection="vertical">
@@ -48,7 +50,18 @@ const Item = ({ id, name, stars, shortDesc, price, image, longDesc }) => {
           </div>
           <p className="price">Price: ${price}</p>
 
-          <button onClick={() => handleAddToCart(id)}>Add to Cart</button>
+          <button
+            className={showerror ? "cart-error" : "cart-button"}
+            onClick={() => {
+              if (loggedIn) {
+                handleAddToCart(id);
+              } else {
+                setShowError(true);
+              }
+            }}
+          >
+            {showerror ? "You must be logged to do that!" : "Add to Cart"}
+          </button>
         </div>
       </ReactCardFlip>
     </React.Fragment>

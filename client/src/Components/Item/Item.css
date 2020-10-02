@@ -93,7 +93,7 @@
   margin-left: 10px;
 }
 
-.back button {
+.back .cart-button {
   padding: 10px;
   font-size: 1.4em;
   border: none;
@@ -104,8 +104,19 @@
   transition: 0.2s ease;
 }
 
-.back button:hover {
+.back .cart-button:hover {
   cursor: pointer;
   background-color: #1e1b60;
+}
+
+.cart-error {
+  padding: 10px;
+  font-size: 1.4em;
+  border: none;
+  border-radius: 10px;
+  background-color: #e8e7f8;
+  -webkit-transition: 0.2s ease;
+  transition: 0.2s ease;
+  color: darkred;
 }
 /*# sourceMappingURL=Item.css.map */

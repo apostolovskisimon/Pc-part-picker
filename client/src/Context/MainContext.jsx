@@ -43,7 +43,6 @@ export const PeriodicProvider = (props) => {
       itemToAdd
     )
       .then((res) => {
-        console.log(res.data);
         if (typeof res.data == "string") {
           return;
         } else {
@@ -52,7 +51,6 @@ export const PeriodicProvider = (props) => {
       })
       .catch((err) => console.log(err));
   };
-  const [popularItems, setPopularItems] = useState([]);
 
   useEffect(() => {
     if (localStorage.getItem("USER")) {
@@ -63,34 +61,33 @@ export const PeriodicProvider = (props) => {
 
     Axios.get("http://localhost:5000/items/")
       .then((res) => {
-        console.log(res.data);
         setItemList(res.data);
-        setPopularItems(
-          res.data.sort(() => Math.random() - Math.random()).slice(0, 3)
-        );
+        setItemsToShow(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
 
-  // const nextPage = () => {
-  //   Axios.get(`http://localhost:5000/items?page=1&limit=10`)
-  //     .then((res) => console.log(res.data))
-  //     .catch((err) => console.log(err));
-  // };
-
   const [activeCategory, setActiveCategory] = useState("All");
   const [categorizedItems, setCategorizedItems] = useState([]);
   const [allActive, setAllActive] = useState(true);
 
   const [itemsToShow, setItemsToShow] = useState([]);
+  const [toggleCattegory, setToggleCategory] = useState(false);
 
   const handleActiveCateogry = (query) => {
-    const items = itemList.filter(
-      (el) => el.category.toLowerCase() === query.toLowerCase()
-    );
-    setItemList(items);
+    if (query === "All") {
+      setItemsToShow(itemList);
+      setToggleCategory(false);
+    } else {
+      setToggleCategory(true);
+      setAllActive(false);
+      const items = itemList.filter(
+        (el) => el.category.toLowerCase() === query.toLowerCase()
+      );
+      setItemsToShow(items);
+    }
   };
 
   // const [searchedItems, setSearchedItems] = useState([]);
@@ -108,7 +105,6 @@ export const PeriodicProvider = (props) => {
   };
 
   const handleDeleteItem = async (id) => {
-    console.log(id);
     await Axios.post(`http://localhost:5000/users/deleteItem/${user.email}`, {
       id: id,
     })
@@ -157,10 +153,10 @@ export const PeriodicProvider = (props) => {
     setLoggedIn,
     user,
     setUser,
-    popularItems,
+    toggleCattegory,
+    setToggleCategory,
     handleAddToCart,
     itemList,
-    // nextPage,
     setItemList,
     handleActiveCateogry,
     categorizedItems,
@@ -169,7 +165,6 @@ export const PeriodicProvider = (props) => {
     setItemsToShow,
     activeCategory,
     handleSearch,
-    // searchedItems,
     searchMode,
     setSearchMode,
     allActive,

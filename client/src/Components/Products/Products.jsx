@@ -8,15 +8,14 @@ import ProductsSidemenu from "../ProductsSidemenu/ProductsSidemenu";
 import "./Products.css";
 const Products = () => {
   const {
-    itemList,
-    activeCategory,
     categorizedItems,
     handleSearch,
     setSearchMode,
     searchMode,
     allActive,
-    prevPage,
-    nextPage,
+    setAllActive,
+    itemsToShow,
+    handleActiveCateogry,
   } = useContext(PeriodicContext);
 
   const [searchQuery, setSearchQuery] = useState("");
@@ -25,33 +24,53 @@ const Products = () => {
     <div className="products-page">
       <div className="categories">
         <ul>
-          <li>All</li>
+          <li
+            className={
+              searchMode ? "item-cat" : allActive ? "beActive" : "item-cat"
+            }
+            onClick={() => {
+              setAllActive(true);
+              handleActiveCateogry("All");
+              setSearchMode(false);
+            }}
+          >
+            All
+          </li>
           {Categories.map((el, i) => {
             return <ProductsSidemenu cat={el.category} key={i} />;
           })}
         </ul>
 
         <FontAwesomeIcon icon={faSearch} className="searchicn" />
-        <input
-          type="search"
-          placeholder="Search for an item"
-          onChange={(e) => {
-            setSearchQuery(e.target.value);
-          }}
-        />
-        <br />
-        <button
-          onClick={() => {
-            if (searchQuery !== "") {
-              setSearchMode(true);
-            } else {
-              setSearchMode(false);
-            }
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
             handleSearch(searchQuery);
+            setSearchQuery("");
           }}
         >
-          Search
-        </button>
+          <input
+            type="search"
+            value={searchQuery}
+            placeholder="Search for an item"
+            onChange={(e) => {
+              setSearchQuery(e.target.value);
+            }}
+          />
+          <br />
+          <button
+            type="submit"
+            onClick={() => {
+              if (searchQuery !== "") {
+                setSearchMode(true);
+              } else {
+                setSearchMode(false);
+              }
+            }}
+          >
+            Search
+          </button>
+        </form>
       </div>
       <div className="shown-products">
         {searchMode ? (
@@ -70,25 +89,9 @@ const Products = () => {
               />
             );
           })
-        ) : activeCategory !== "All" ? (
-          categorizedItems.map((el, i) => {
-            return (
-              <Item
-                key={i}
-                id={el.id}
-                name={el.title}
-                stars={el.rating}
-                quantity={el.quantity}
-                shortDesc={el.shortDesc}
-                price={el.price}
-                longDesc={el.longDesc}
-                image={el.image}
-              />
-            );
-          })
         ) : (
           <React.Fragment>
-            {itemList.map((el, i) => {
+            {itemsToShow.map((el, i) => {
               return (
                 <Item
                   key={i}

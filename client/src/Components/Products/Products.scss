@@ -2,22 +2,36 @@
   width: 100%;
   display: flex;
   padding-top: 10vh;
-  height: 100vh;
+  height: 100%;
   overflow-y: visible;
+  position: relative;
+  // background: linear-gradient(180deg, (rgb(24, 21, 76), rgb(159, 155, 228)));
 }
 
 .categories {
   width: 15%;
-  position: fixed;
-  top: 40%;
-  background-color: darkblue;
-  padding: 10px;
+  padding-top: 3em;
+}
+
+.categories li {
+  margin-bottom: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 1.3em;
+  padding: 8px;
+  text-indent: 10px;
+  border-radius: 10px;
 }
 
 .categories li:hover {
-  background-color: gray;
-  color: black;
+  background: linear-gradient(to right, (rgb(24, 21, 76), rgb(159, 155, 228)));
+  color: white;
   cursor: pointer;
+}
+
+.categories form {
+  background-color: white;
+  margin-top: 10px;
 }
 
 .searchicn {
@@ -26,19 +40,14 @@
 }
 
 .shown-products {
-  width: 75%;
-  margin-left: 15%;
+  width: 80%;
   height: 100vh;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
 }
-.activeCat {
-  background-color: white;
-  color: black;
-}
 
-.notActive {
-  background-color: black;
-  color: white;
+.beActive {
+  background: linear-gradient(to right, (rgb(24, 21, 76), rgb(159, 155, 228)));
+  color: greenyellow;
 }

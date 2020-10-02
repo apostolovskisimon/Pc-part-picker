@@ -1,22 +1,28 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { PeriodicContext } from "../../Context/MainContext";
 import "./ProductsSidemenu.css";
 const ProductsSidemenu = ({ cat }) => {
   const {
     handleActiveCateogry,
-    activeCategory,
-    setSearchMode,
     allActive,
+    setAllActive,
     itemsToShow,
-    setItemsToShow,
+    setSearchMode,
   } = useContext(PeriodicContext);
+
+  let categories = itemsToShow.map((el) => el.category);
 
   return (
     <React.Fragment>
       <li
+        className={
+          categories.includes(cat) && !allActive ? "beActive" : "item-cat"
+        }
         id={cat}
         onClick={(e) => {
           handleActiveCateogry(cat);
+          setAllActive(false);
+          setSearchMode(false);
         }}
       >
         {cat}

@@ -81,7 +81,7 @@
   margin-left: 10px;
 }
 
-.back button {
+.back .cart-button {
   padding: 10px;
   font-size: 1.4em;
   border: none;
@@ -91,7 +91,17 @@
   transition: 0.2s ease;
 }
 
-.back button:hover {
+.back .cart-button:hover {
   cursor: pointer;
   background-color: lighten(rgb(24, 21, 76), $amount: 5%);
+}
+
+.cart-error {
+  padding: 10px;
+  font-size: 1.4em;
+  border: none;
+  border-radius: 10px;
+  background-color: lighten(rgb(24, 21, 76), $amount: 75%);
+  transition: 0.2s ease;
+  color: darkred;
 }

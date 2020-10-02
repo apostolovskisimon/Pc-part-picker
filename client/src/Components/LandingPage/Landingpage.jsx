@@ -1,6 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import ItemsList from "../ItemsList/ItemsList";
+import Products from "../Products/Products";
 import "./Landingpage.css";
 
 const LandingPage = () => {
@@ -14,12 +13,9 @@ const LandingPage = () => {
             <br /> but remember you need to be logged in so you can save your
             favorite items in the cart.{" "}
           </p>
-          <Link to="/products" className="link-shop">
-            Check out our products!
-          </Link>
         </div>
       </div>
-      <ItemsList />
+      <Products />
     </React.Fragment>
   );
 };

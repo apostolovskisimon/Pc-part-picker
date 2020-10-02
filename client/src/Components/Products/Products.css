@@ -4,22 +4,36 @@
   display: -ms-flexbox;
   display: flex;
   padding-top: 10vh;
-  height: 100vh;
+  height: 100%;
   overflow-y: visible;
+  position: relative;
 }
 
 .categories {
   width: 15%;
-  position: fixed;
-  top: 40%;
-  background-color: darkblue;
-  padding: 10px;
+  padding-top: 3em;
+}
+
+.categories li {
+  margin-bottom: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 1.3em;
+  padding: 8px;
+  text-indent: 10px;
+  border-radius: 10px;
 }
 
 .categories li:hover {
-  background-color: gray;
-  color: black;
+  background: -webkit-gradient(linear, left top, right top, from(#18154c), to(#9f9be4));
+  background: linear-gradient(to right, #18154c, #9f9be4);
+  color: white;
   cursor: pointer;
+}
+
+.categories form {
+  background-color: white;
+  margin-top: 10px;
 }
 
 .searchicn {
@@ -28,8 +42,7 @@
 }
 
 .shown-products {
-  width: 75%;
-  margin-left: 15%;
+  width: 80%;
   height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -42,13 +55,9 @@
       justify-content: space-around;
 }
 
-.activeCat {
-  background-color: white;
-  color: black;
-}
-
-.notActive {
-  background-color: black;
-  color: white;
+.beActive {
+  background: -webkit-gradient(linear, left top, right top, from(#18154c), to(#9f9be4));
+  background: linear-gradient(to right, #18154c, #9f9be4);
+  color: greenyellow;
 }
 /*# sourceMappingURL=Products.css.map */

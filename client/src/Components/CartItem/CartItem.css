@@ -1,16 +1,14 @@
-.cart-item img {
-  height: 100%;
-  width: 35%;
-}
-
-.hee {
-  margin-bottom: 30px;
-}
-
 .cartItemRating {
   position: absolute;
   top: 1%;
   right: 1%;
+}
+
+.imgs {
+  -o-object-fit: contain;
+     object-fit: contain;
+  height: 100%;
+  width: 50%;
 }
 
 .cartItemRating p {

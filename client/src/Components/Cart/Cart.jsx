@@ -62,6 +62,7 @@ const Cart = () => {
                     price={el.price}
                     id={el.id}
                     category={el.category}
+                    image={el.image}
                   />
                 );
               })}
