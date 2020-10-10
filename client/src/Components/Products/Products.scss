@@ -64,3 +64,67 @@
   background: linear-gradient(to right, #18154c, #3731a7);
   color: rgb(254, 35, 177);
 }
+
+.toggleFilters {
+  width: 100px;
+}
+
+@media only screen and (max-width: 426px) {
+  .categories {
+    width: 100%;
+    height: 13em;
+    padding-top: 1em;
+  }
+  .categories ul {
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .products-page {
+    padding-top: 5vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .categories ul li {
+    margin: 0;
+    margin-left: 10px;
+    text-indent: 0;
+    padding: 5px 10px;
+    font-size: 1.2em;
+  }
+
+  .categories form {
+    width: 90%;
+    margin: 1em auto;
+  }
+
+  .categories form input {
+    width: 16em;
+  }
+
+  .cat-mob {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .toggleFilters {
+    background-color: #18154c;
+    color: white;
+    border: none;
+    font-size: 1.2em;
+    width: 7em;
+    padding: 8px;
+    border-radius: 10px;
+    margin: 0 auto;
+  }
+
+  .shown-products {
+    width: 100%;
+  }
+}

@@ -9,6 +9,10 @@
   margin: 0 auto;
 }
 
+.cart h2 {
+  padding: 20px;
+}
+
 .overlay-cart {
   position: absolute;
   top: 0;
@@ -80,4 +84,18 @@
   text-decoration: none;
   margin-left: 20px;
   transition: 0.1s ease-in;
+}
+
+@media only screen and (max-width: 426px) {
+  .cart table {
+    width: 98%;
+  }
+
+  .cart {
+    margin-bottom: 15vh;
+  }
+
+  .ticket {
+    width: 80%;
+  }
 }

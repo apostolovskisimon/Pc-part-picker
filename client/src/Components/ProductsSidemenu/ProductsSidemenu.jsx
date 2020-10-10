@@ -8,6 +8,8 @@ const ProductsSidemenu = ({ cat }) => {
     setAllActive,
     itemsToShow,
     setSearchMode,
+    toggleFilters,
+    setToggleFilters,
   } = useContext(PeriodicContext);
 
   let categories = itemsToShow.map((el) => el.category);
@@ -19,7 +21,10 @@ const ProductsSidemenu = ({ cat }) => {
           categories.includes(cat) && !allActive ? "beActive" : "item-cat"
         }
         id={cat}
-        onClick={(e) => {
+        onClick={() => {
+          if (toggleFilters) {
+            setToggleFilters(false);
+          }
           handleActiveCateogry(cat);
           setAllActive(false);
           setSearchMode(false);

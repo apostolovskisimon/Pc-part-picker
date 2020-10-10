@@ -6,7 +6,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useContext, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import logo from "../../Assets/Images/LogoMakr_2qC11y.png";
+import logo from "../../Assets/Images/logo.png";
 import { PeriodicContext } from "../../Context/MainContext";
 import "./navbar.css";
 const Navbar = () => {

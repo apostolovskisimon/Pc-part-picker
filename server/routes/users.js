@@ -11,7 +11,6 @@ router.route("/").get((req, res) => {
 router.route("/add").post(async (req, res) => {
   try {
     const hashPassword = await bcrypt.hash(req.body.password, 10);
-
     const email = req.body.email;
     const password = hashPassword;
     const displayName = req.body.displayName;
@@ -20,8 +19,6 @@ router.route("/add").post(async (req, res) => {
       email,
       password,
     });
-
-    console.log(NewUser);
 
     NewUser.save()
       .then(() => res.json("Added a user"))
@@ -63,7 +60,6 @@ router.route("/:email").get((req, res) => {
 
 // da se zacuva vo contextot
 router.route("/addToCart/:email").post(async (req, res) => {
-  console.log(req.body);
   await User.findOne({ email: req.params.email }).then((user) => {
     const item = user.cart.find((el) => el.id === req.body._id);
     if (item) {
@@ -83,8 +79,8 @@ router.route("/addToCart/:email").post(async (req, res) => {
 
 router.route("/deleteItem/:email").post(async (req, res) => {
   await User.findOne({ email: req.params.email }).then((user) => {
-    const itemToDelete = user.cart.find((el) => el.id === req.body.id);
-    const newCart = user.cart.filter((el) => el.id !== itemToDelete.id);
+    const itemToDelete = user.cart.find((el) => el._id === req.body.id);
+    const newCart = user.cart.filter((el) => el._id !== itemToDelete._id);
     user.cart = newCart;
     user
       .save()
@@ -99,7 +95,6 @@ router.route("/buyItem/:email").post(async (req, res) => {
     itemToBuy.quantity = req.body.quantity;
     user.purchaseHistory.push(itemToBuy);
     const updatedCart = user.cart.filter((el) => el._id !== itemToBuy._id);
-    console.log(updatedCart);
     user.cart = updatedCart;
     user
       .save()

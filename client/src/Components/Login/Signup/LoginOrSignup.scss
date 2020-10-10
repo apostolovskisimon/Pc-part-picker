@@ -14,7 +14,65 @@
   margin-bottom: 1em;
 }
 
-.loginbox form,
-.signupform {
-  padding-top: 10vh;
+// .loginbox form,
+// .signupform {
+//   padding-top: 10vh;
+// }
+
+.signupform,
+.loginbox {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.signupform form,
+.loginbox form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 25%;
+  height: 30vh;
+  padding: 10px;
+  border: 2px solid #161616;
+  color: white;
+}
+
+.signupform form input,
+.loginbox form input {
+  height: 30px;
+  border-radius: 10px;
+  border: none;
+  text-indent: 10px;
+  font-size: 1.1em;
+}
+
+.signupform form button,
+.loginbox form button {
+  margin-top: 5px;
+  font-size: 1.1em;
+  border: none;
+  border-radius: 10px;
+  padding: 8px;
+  width: 35%;
+  margin: 0 auto;
+}
+
+.signupCover {
+  height: 82.9vh;
+  width: 100%;
+  background-image: url("../../../Assets/Images/test1.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+@media only screen and (max-width: 426px) {
+  .signupform form,
+  .loginbox form {
+    width: 85%;
+  }
 }

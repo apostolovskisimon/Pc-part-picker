@@ -9,6 +9,10 @@
   margin: 0 auto;
 }
 
+.cart h2 {
+  padding: 20px;
+}
+
 .overlay-cart {
   position: absolute;
   top: 0;
@@ -94,5 +98,17 @@
   margin-left: 20px;
   -webkit-transition: 0.1s ease-in;
   transition: 0.1s ease-in;
+}
+
+@media only screen and (max-width: 426px) {
+  .cart table {
+    width: 98%;
+  }
+  .cart {
+    margin-bottom: 15vh;
+  }
+  .ticket {
+    width: 80%;
+  }
 }
 /*# sourceMappingURL=Cart.css.map */

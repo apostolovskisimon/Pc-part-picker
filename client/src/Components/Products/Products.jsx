@@ -16,81 +16,139 @@ const Products = () => {
     setAllActive,
     itemsToShow,
     handleActiveCateogry,
+    mobileMode,
+    toggleFilters,
+    setToggleFilters,
   } = useContext(PeriodicContext);
 
   const [searchQuery, setSearchQuery] = useState("");
 
   return (
     <div className="products-page">
-      <div className="categories">
-        <ul>
-          <li
-            className={
-              searchMode ? "item-cat" : allActive ? "beActive" : "item-cat"
-            }
-            onClick={() => {
-              setAllActive(true);
-              handleActiveCateogry("All");
-              setSearchMode(false);
-            }}
-          >
-            All
-          </li>
-          {Categories.map((el, i) => {
-            return <ProductsSidemenu cat={el.category} key={i} />;
-          })}
-        </ul>
-
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            handleSearch(searchQuery);
-            setSearchQuery("");
-          }}
-        >
-          <input
-            type="search"
-            value={searchQuery}
-            placeholder="Search for an item"
-            onChange={(e) => {
-              setSearchQuery(e.target.value);
-            }}
-          />
-          <br />
+      {mobileMode ? (
+        <div className="cat-mob">
           <button
-            type="submit"
-            onClick={() => {
-              if (searchQuery !== "") {
-                setSearchMode(true);
-              } else {
-                setSearchMode(false);
+            onClick={() => setToggleFilters(!toggleFilters)}
+            className="toggleFilters"
+          >
+            Toggle Filters
+          </button>
+          {toggleFilters && (
+            <div className="categories">
+              <ul>
+                <li
+                  className={
+                    searchMode
+                      ? "item-cat"
+                      : allActive
+                      ? "beActive"
+                      : "item-cat"
+                  }
+                  onClick={() => {
+                    if (toggleFilters) setToggleFilters(false);
+                    setAllActive(true);
+                    handleActiveCateogry("All");
+                    setSearchMode(false);
+                  }}
+                >
+                  All
+                </li>
+                {Categories.map((el, i) => {
+                  return <ProductsSidemenu cat={el.category} key={i} />;
+                })}
+              </ul>
+
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  handleSearch(searchQuery);
+                  setSearchQuery("");
+                  setToggleFilters(false);
+                }}
+              >
+                <input
+                  type="search"
+                  value={searchQuery}
+                  placeholder="Search for an item"
+                  onChange={(e) => {
+                    setSearchQuery(e.target.value);
+                  }}
+                />
+                <br />
+                <button
+                  type="submit"
+                  onClick={() => {
+                    if (searchQuery !== "") {
+                      setSearchMode(true);
+                    } else {
+                      setSearchMode(false);
+                    }
+                  }}
+                >
+                  Search
+                </button>
+              </form>
+            </div>
+          )}
+        </div>
+      ) : (
+        <div className="categories">
+          <ul>
+            <li
+              className={
+                searchMode ? "item-cat" : allActive ? "beActive" : "item-cat"
               }
+              onClick={() => {
+                if (toggleFilters) {
+                  setToggleFilters(false);
+                }
+                setAllActive(true);
+                handleActiveCateogry("All");
+                setSearchMode(false);
+              }}
+            >
+              All
+            </li>
+            {Categories.map((el, i) => {
+              return <ProductsSidemenu cat={el.category} key={i} />;
+            })}
+          </ul>
+
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleSearch(searchQuery);
+              setSearchQuery("");
             }}
           >
-            Search
-          </button>
-        </form>
-      </div>
-      <div className="shown-products">
-        {searchMode ? (
-          categorizedItems.map((el, i) => {
-            return (
-              <Item
-                key={i}
-                id={el._id}
-                name={el.title}
-                stars={el.rating}
-                quantity={el.quantity}
-                shortDesc={el.shortDesc}
-                price={el.price}
-                image={el.image}
-                longDesc={el.longDesc}
-              />
-            );
-          })
-        ) : (
-          <React.Fragment>
-            {itemsToShow.map((el, i) => {
+            <input
+              type="search"
+              value={searchQuery}
+              placeholder="Search for an item"
+              onChange={(e) => {
+                setSearchQuery(e.target.value);
+              }}
+            />
+            <br />
+            <button
+              type="submit"
+              onClick={() => {
+                if (searchQuery !== "") {
+                  setSearchMode(true);
+                } else {
+                  setSearchMode(false);
+                }
+              }}
+            >
+              Search
+            </button>
+          </form>
+        </div>
+      )}
+      {!toggleFilters && (
+        <div className="shown-products">
+          {searchMode ? (
+            categorizedItems.map((el, i) => {
               return (
                 <Item
                   key={i}
@@ -100,16 +158,32 @@ const Products = () => {
                   quantity={el.quantity}
                   shortDesc={el.shortDesc}
                   price={el.price}
-                  longDesc={el.longDesc}
                   image={el.image}
+                  longDesc={el.longDesc}
                 />
               );
-            })}
-          </React.Fragment>
-        )}
-      </div>
-      {/* <button onClick={() => prevPage()}>Prev</button>
-      <button onClick={() => nextPage()}>Next</button> */}
+            })
+          ) : (
+            <React.Fragment>
+              {itemsToShow.map((el, i) => {
+                return (
+                  <Item
+                    key={i}
+                    id={el._id}
+                    name={el.title}
+                    stars={el.rating}
+                    quantity={el.quantity}
+                    shortDesc={el.shortDesc}
+                    price={el.price}
+                    longDesc={el.longDesc}
+                    image={el.image}
+                  />
+                );
+              })}
+            </React.Fragment>
+          )}
+        </div>
+      )}
     </div>
   );
 };

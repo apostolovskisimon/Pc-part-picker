@@ -7,6 +7,18 @@ export const PeriodicProvider = (props) => {
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showSignupForm, setShowSignupForm] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
+  const [itemList, setItemList] = useState([]);
+  const [mobileMode, setMobileMode] = useState(false);
+  const [toggleFilters, setToggleFilters] = useState(false);
+  const [activeCategory, setActiveCategory] = useState("All");
+  const [categorizedItems, setCategorizedItems] = useState([]);
+  const [allActive, setAllActive] = useState(true);
+  const [itemsToShow, setItemsToShow] = useState([]);
+  const [toggleCattegory, setToggleCategory] = useState(false);
+  const [buyMode, setBuyMode] = useState(false);
+  const [buyedItem, setBuyedItem] = useState(undefined);
+  const [searchMode, setSearchMode] = useState(false);
+
   const [user, setUser] = useState({
     displayName: "",
     email: "",
@@ -34,8 +46,6 @@ export const PeriodicProvider = (props) => {
       .catch((err) => console.log(err));
   };
 
-  const [itemList, setItemList] = useState([]);
-
   const handleAddToCart = async (id) => {
     const itemToAdd = itemList.find((el) => el._id === id);
     await Axios.post(
@@ -50,6 +60,14 @@ export const PeriodicProvider = (props) => {
         }
       })
       .catch((err) => console.log(err));
+  };
+
+  const handleMobileMode = () => {
+    if (window.outerWidth < 427) {
+      setMobileMode(true);
+    } else {
+      setMobileMode(false);
+    }
   };
 
   useEffect(() => {
@@ -67,14 +85,11 @@ export const PeriodicProvider = (props) => {
       .catch((err) => {
         console.log(err);
       });
+
+    window.addEventListener("load", handleMobileMode);
+
+    window.addEventListener("resize", handleMobileMode);
   }, []);
-
-  const [activeCategory, setActiveCategory] = useState("All");
-  const [categorizedItems, setCategorizedItems] = useState([]);
-  const [allActive, setAllActive] = useState(true);
-
-  const [itemsToShow, setItemsToShow] = useState([]);
-  const [toggleCattegory, setToggleCategory] = useState(false);
 
   const handleActiveCateogry = (query) => {
     if (query === "All") {
@@ -90,9 +105,6 @@ export const PeriodicProvider = (props) => {
     }
   };
 
-  // const [searchedItems, setSearchedItems] = useState([]);
-
-  // vidi za search
   const handleSearch = (query) => {
     if (query !== "") {
       const searchedThrough = itemList.filter((el) =>
@@ -111,9 +123,6 @@ export const PeriodicProvider = (props) => {
       .then((res) => setUser({ ...user, cart: res.data }))
       .catch((err) => console.log(err));
   };
-
-  const [buyMode, setBuyMode] = useState(false);
-  const [buyedItem, setBuyedItem] = useState(undefined);
 
   const handleBuyItem = async (id, quantity) => {
     const itemToBuy = user.cart.find((el) => el._id === id);
@@ -142,8 +151,6 @@ export const PeriodicProvider = (props) => {
       .catch((err) => console.log(err));
   };
 
-  const [searchMode, setSearchMode] = useState(false);
-
   const sharedValue = {
     showLoginForm,
     setShowLoginForm,
@@ -161,6 +168,9 @@ export const PeriodicProvider = (props) => {
     handleActiveCateogry,
     categorizedItems,
     setCategorizedItems,
+    mobileMode,
+    toggleFilters,
+    setToggleFilters,
     itemsToShow,
     setItemsToShow,
     activeCategory,

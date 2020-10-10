@@ -55,10 +55,10 @@ const LoginOrSignup = () => {
   };
 
   return (
-    <React.Fragment>
+    <div className="signupCover">
       <div className="loginbox">
         <form onSubmit={(e) => LogIn(e)}>
-          <p>LOG IN FORM</p>
+          <p>LOG IN</p>
           <input
             type="email"
             placeholder="E-Mail"
@@ -74,7 +74,7 @@ const LoginOrSignup = () => {
           <button type="submit">Log In</button>
         </form>
       </div>
-    </React.Fragment>
+    </div>
   );
 };
 

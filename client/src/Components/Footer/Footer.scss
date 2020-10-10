@@ -46,7 +46,8 @@ footer textarea {
   border-radius: 10px;
 }
 
-footer button {
+footer .btnsend,
+footer .msgSent {
   font-size: 1.2em;
   margin-left: 10px;
   border: 2px solid rgb(254, 35, 177);
@@ -54,6 +55,12 @@ footer button {
   color: white;
   padding: 8px 12px;
   border-radius: 10px;
+}
+
+footer .msgSent {
+  border: 2px solid white;
+  background-color: greenyellow;
+  color: black;
 }
 
 .created {
@@ -64,4 +71,43 @@ footer button {
   left: 50%;
   transform: translateX(-50%);
   font-size: 1.2em;
+}
+
+@media only screen and (max-width: 426px) {
+  footer {
+    height: 320px;
+  }
+
+  .footer-overlay {
+    flex-direction: column;
+  }
+
+  footer form {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  footer input {
+    height: 2em;
+    font-size: 1em;
+  }
+
+  footer form textarea {
+    margin-top: 10px;
+    font-size: 1em;
+  }
+
+  .footer-overlay h3 {
+    font-size: 1em;
+    padding: 10px;
+  }
+
+  footer .btnsend,
+  footer .msgSent {
+    margin-top: 10px;
+  }
+  .created {
+    width: 100%;
+    font-size: 1em;
+  }
 }

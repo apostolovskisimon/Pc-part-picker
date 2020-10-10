@@ -4,7 +4,9 @@ import { PeriodicContext } from "../../Context/MainContext";
 import "./CartItem.css";
 
 const CartItem = ({ title, shortDesc, stars, price, id, category, image }) => {
-  const { handleDeleteItem, handleBuyItem } = useContext(PeriodicContext);
+  const { handleDeleteItem, handleBuyItem, mobileMode } = useContext(
+    PeriodicContext
+  );
   const [quantity, setQuantity] = useState(1);
   return (
     <tr>

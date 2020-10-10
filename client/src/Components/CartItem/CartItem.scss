@@ -148,3 +148,48 @@ td img {
   border: 1px solid black;
   margin-left: 5px;
 }
+
+@media only screen and (max-width: 426px) {
+  td {
+    height: 30vh;
+  }
+
+  .imgs {
+    height: 26%;
+    position: absolute;
+    top: 10px;
+  }
+
+  .cart-title {
+    left: 10px;
+    padding-top: 5px;
+  }
+
+  .cart-shortDesc {
+    left: 10px;
+    bottom: 10%;
+    width: 90%;
+    max-height: 80px;
+    overflow-y: scroll;
+  }
+
+  .cart-stars {
+    top: 5%;
+  }
+
+  .item-amount-price {
+    font-size: 0.9em;
+    flex-direction: column;
+    top: 5%;
+  }
+  .cart-price {
+    bottom: 5%;
+  }
+
+  .btn-buy,
+  .btn-del {
+    padding: 8px;
+    margin-bottom: 10px;
+    font-size: 1em;
+  }
+}

@@ -36,10 +36,10 @@ const Signup = () => {
   };
 
   return (
-    <React.Fragment>
+    <div className="signupCover">
       <div className="anim signupform">
         <form onSubmit={(e) => CreateAccount(e)}>
-          <p>SIGN UP FORM</p>
+          <p>SIGN UP</p>
           <input
             type="text"
             placeholder="Display Name"
@@ -61,7 +61,7 @@ const Signup = () => {
           <button type="submit">Create Account</button>
         </form>
       </div>
-    </React.Fragment>
+    </div>
   );
 };
 

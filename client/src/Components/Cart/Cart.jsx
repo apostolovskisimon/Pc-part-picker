@@ -41,7 +41,7 @@ const Cart = () => {
         </div>
 
         {user.cart.length === 0 ? (
-          <h2>Its empty in here. Try adding some items</h2>
+          <h2>Its empty in here. Try adding some items.</h2>
         ) : (
           <table>
             <thead>

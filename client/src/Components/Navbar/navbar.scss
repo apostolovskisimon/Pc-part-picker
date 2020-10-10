@@ -173,3 +173,28 @@ $secondary-color: rgb(248, 249, 250);
     height: 0;
   }
 }
+
+@media only screen and (max-width: 426px) {
+  .nav-form {
+    width: 8em;
+  }
+
+  .user-control {
+    width: 6em;
+    margin-left: 40px;
+  }
+
+  .shopcart p {
+    right: 4.2em;
+    font-size: 0.8em;
+  }
+
+  .user-menu {
+    right: 0;
+    top: 9.8vh;
+  }
+
+  .navbar {
+    padding: 0 1em 0 1em;
+  }
+}
